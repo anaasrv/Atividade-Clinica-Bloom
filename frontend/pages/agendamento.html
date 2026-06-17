@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento | Bloom Maternity</title>
+    
+    <!-- Bootstrap 5 CSS + Icons + Google Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Flatpickr para calendário bonito -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/visual-improvements.css">
+</head>
+<body class="bg-light">
+    <!-- 
+================================================================================
+COMPONENTE: NAVBAR - Bloom Maternity
+DESCRIÇÃO: Barra de navegação principal do site, responsiva, com dropdown,
+           suporte a tema claro/escuro e estado de login/logout.
+================================================================================
+-->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top transition">
+    <div class="container">
+        <!-- Logo da clínica -->
+        <a class="navbar-brand bloom-brand d-flex align-items-center gap-2" href="index.html" aria-label="Bloom Maternity - Início">
+            <img src="../assets/images/logo-bloom.png" alt="Bloom Maternity" class="brand-logo-img">
+        </a>
+        
+        <!-- Botão toggle para mobile -->
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" 
+                aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Menu principal -->
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-1">
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" href="index.html">
+                        <i class="bi bi-house-heart me-1"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" href="medicos.html">
+                        <i class="bi bi-people me-1"></i> Médicos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" href="servicos.html">
+                        <i class="bi bi-clipboard2-pulse me-1"></i> Serviços
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" href="agendamento.html">
+                        <i class="bi bi-calendar-heart me-1"></i> Agendar
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" href="telemedicina.html">
+                        <i class="bi bi-camera-video me-1"></i> Telemedicina
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle fw-semibold" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-info-circle me-1"></i> Mais
+                    </a>
+                    <ul class="dropdown-menu border-0 shadow-lg rounded-3 mt-2">
+                        <li><a class="dropdown-item py-2" href="duvidas.html"><i class="bi bi-question-circle me-2"></i> Dúvidas Frequentes</a></li>
+                        <li><a class="dropdown-item py-2" href="planos.html"><i class="bi bi-credit-card me-2"></i> Planos de Saúde</a></li>
+                        <li><a class="dropdown-item py-2" href="unidades.html"><i class="bi bi-geo-alt me-2"></i> Nossas Unidades</a></li>
+                        <li><hr class="dropdown-divider my-1"></li>
+                        <li><a class="dropdown-item py-2" href="#"><i class="bi bi-envelope me-2"></i> Fale Conosco</a></li>
+                        <li><a class="dropdown-item py-2" href="#"><i class="bi bi-megaphone me-2"></i> Trabalhe Conosco</a></li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <!-- Área de usuário (dinâmica via JavaScript) -->
+            <div id="userMenu" class="d-flex gap-2 align-items-center">
+                <!-- Conteúdo dinâmico inserido via auth.js -->
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Script para gerenciar estado do usuário na navbar -->
+<script>
+(function() {
+    'use strict';
+    
+    // Atualizar navbar baseado no status de autenticação
+    function updateNavbarAuth() {
+        const userMenu = document.getElementById('userMenu');
+        if (!userMenu) return;
+        
+        // Obter token e usuário
+        const token = localStorage.getItem('bloom_token') || sessionStorage.getItem('bloom_token');
+        let usuario = null;
+        
+        try {
+            const userStr = localStorage.getItem('bloom_user') || sessionStorage.getItem('bloom_user');
+            if (userStr) {
+                usuario = JSON.parse(userStr);
+            }
+        } catch (e) {
+            console.error('Erro ao parsear usuário:', e);
+        }
+        
+        if (token && usuario && usuario.id) {
+            // Usuário logado - mostrar menu do usuário
+            userMenu.innerHTML = `
+                <div class="dropdown">
+                    <button class="btn btn-outline-pink rounded-pill dropdown-toggle d-flex align-items-center gap-2 px-3 py-2" 
+                            type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle fs-5"></i>
+                        <span class="d-none d-md-inline">Olá, ${usuario.nome?.split(' ')[0] || 'Paciente'}!</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-3 mt-2" style="min-width: 220px;">
+                        <li><a class="dropdown-item py-2" href="meus-agendamentos.html">
+                            <i class="bi bi-calendar-check me-2"></i> Meus Agendamentos
+                        </a></li>
+                        <li><a class="dropdown-item py-2" href="meus-agendamentos.html">
+                            <i class="bi bi-file-text me-2"></i> Meus Exames
+                        </a></li>
+                        <li><a class="dropdown-item py-2" href="meu-perfil.html">
+                            <i class="bi bi-gear me-2"></i> Meu Perfil
+                        </a></li>
+                        ${(usuario.tipo_usuario === 'admin' || usuario.is_admin) ? `<li><a class="dropdown-item py-2" href="admin-painel.html"><i class="bi bi-speedometer2 me-2"></i> Painel Admin</a></li>` : ''}
+                        <li><hr class="dropdown-divider my-1"></li>
+                        <li><a class="dropdown-item py-2 text-danger" href="#" onclick="logout(); return false;">
+                            <i class="bi bi-box-arrow-right me-2"></i> Sair
+                        </a></li>
+                    </ul>
+                </div>
+                <a href="agendamento.html" class="btn btn-gradient rounded-pill d-none d-lg-flex align-items-center gap-2 px-4">
+                    <i class="bi bi-calendar-heart"></i> 
+                    <span>Agendar</span>
+                </a>
+            `;
+        } else {
+            // Usuário não logado - mostrar botões de login/cadastro
+            userMenu.innerHTML = `
+                <a href="login.html" class="btn btn-outline-pink rounded-pill px-4 py-2">
+                    <i class="bi bi-box-arrow-in-right"></i> Entrar
+                </a>
+                <a href="cadastro.html" class="btn btn-gradient rounded-pill px-4 py-2">
+                    <i class="bi bi-person-plus"></i> Cadastrar
+                </a>
+            `;
+        }
+    }
+    
+    // Função global de logout
+    window.logout = function() {
+        // Remover dados de autenticação
+        localStorage.removeItem('bloom_token');
+        localStorage.removeItem('bloom_user');
+        localStorage.removeItem('bloom_user_id');
+        sessionStorage.removeItem('bloom_token');
+        sessionStorage.removeItem('bloom_user');
+        sessionStorage.removeItem('bloom_user_id');
+        
+        // Mostrar mensagem
+        if (window.showToast) {
+            window.showToast('Logout realizado com sucesso!', 'success');
+        } else {
+            alert('Logout realizado com sucesso!');
+        }
+        
+        // Redirecionar para home
+        window.location.href = 'index.html';
+    };
+    
+    // Função global de verificação de login
+    window.isLoggedIn = function() {
+        const token = localStorage.getItem('bloom_token') || sessionStorage.getItem('bloom_token');
+        return !!token;
+    };
+    
+    // Inicializar quando o DOM estiver pronto
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', updateNavbarAuth);
+    } else {
+        updateNavbarAuth();
+    }
+    
+    // Escutar mudanças no storage (para múltiplas abas)
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'bloom_token' || e.key === 'bloom_user') {
+            updateNavbarAuth();
+        }
+    });
+})();
+</script>
+
+<style>
+    /* Estilos específicos da navbar */
+    .navbar {
+        transition: all 0.3s ease;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+    }
+    
+    .navbar-scrolled {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .navbar-nav .nav-link {
+        position: relative;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+    }
+    
+    .navbar-nav .nav-link:hover {
+        background-color: #ffe4ec;
+        color: #ff6b9d !important;
+        transform: translateY(-2px);
+    }
+    
+    .navbar-nav .nav-link.active {
+        background: linear-gradient(135deg, #ffe4ec, #f5eef5);
+        color: #ff6b9d !important;
+    }
+    
+    .navbar-nav .nav-link.active::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 30px;
+        height: 3px;
+        background: linear-gradient(135deg, #ff6b9d, #c8a2c8);
+        border-radius: 3px;
+    }
+    
+    .dropdown-menu {
+        animation: dropdownSlide 0.2s ease;
+    }
+    
+    @keyframes dropdownSlide {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .dropdown-item {
+        transition: all 0.2s ease;
+        border-radius: 10px;
+    }
+    
+    .dropdown-item:hover {
+        background-color: #ffe4ec;
+        color: #ff6b9d;
+        transform: translateX(5px);
+    }
+    
+    @media (max-width: 991.98px) {
+        .navbar-nav {
+            padding: 1rem 0;
+        }
+        
+        .navbar-nav .nav-link {
+            display: inline-block;
+            margin: 0.25rem 0;
+        }
+        
+        .navbar-nav .nav-link.active::after {
+            display: none;
+        }
+        
+        #userMenu {
+            margin-top: 1rem;
+            justify-content: center;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .navbar-brand {
+            font-size: 1.35rem !important;
+        }
+        
+        .btn-outline-pink,
+        .btn-gradient {
+            padding: 0.4rem 1rem !important;
+            font-size: 0.85rem;
+        }
+    }
+
+    /* Wizard Progress - Moderno */
+    .wizard-steps-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+    .wizard-steps-container .wizard-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+    }
+    .wizard-circle {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #aaa;
+        transition: all 0.35s ease;
+        border: 3px solid transparent;
+    }
+    .wizard-step.active .wizard-circle {
+        background: linear-gradient(135deg, #ff6b9d, #c8a2c8);
+        color: #fff;
+        box-shadow: 0 4px 15px rgba(255,107,157,0.4);
+        border-color: rgba(255,255,255,0.5);
+        transform: scale(1.1);
+    }
+    .wizard-step.completed .wizard-circle {
+        background: #28a745;
+        color: #fff;
+        border-color: rgba(40,167,69,0.3);
+    }
+    .wizard-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: #aaa;
+        margin-top: 6px;
+        white-space: nowrap;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: color 0.3s ease;
+    }
+    .wizard-step.active .wizard-label {
+        color: #ff6b9d;
+    }
+    .wizard-step.completed .wizard-label {
+        color: #28a745;
+    }
+    .wizard-line {
+        flex: 1;
+        height: 3px;
+        background: #e8e8e8;
+        margin: 0 -4px;
+        margin-bottom: 22px;
+        transition: background 0.4s ease;
+        min-width: 20px;
+        border-radius: 3px;
+    }
+    .wizard-line.completed {
+        background: #28a745;
+    }
+
+    /* Time slot cards - modernos */
+    .time-slot-card {
+        border: 2px solid #eee;
+        border-radius: 12px;
+        padding: 14px 18px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        background: #fff;
+        position: relative;
+        overflow: hidden;
+    }
+    .time-slot-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #ff6b9d, #c8a2c8);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+    .time-slot-card:hover::before {
+        transform: scaleX(1);
+    }
+    .time-slot-card:hover {
+        border-color: #ff6b9d;
+        background: #fff5f8;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255,107,157,0.15);
+    }
+    .time-slot-card.selected {
+        border-color: #ff6b9d;
+        background: linear-gradient(135deg, #ff6b9d, #c8a2c8);
+        color: #fff;
+        box-shadow: 0 6px 25px rgba(255,107,157,0.4);
+    }
+    .time-slot-card.selected::before {
+        transform: scaleX(1);
+        background: #fff;
+    }
+    .time-slot-card.selected .time-text {
+        color: #fff;
+    }
+    .time-text {
+        font-weight: 700;
+        font-size: 1.1rem;
+    }
+    .time-slot-card.selected .time-sub {
+        color: rgba(255,255,255,0.85) !important;
+    }
+    .time-sub {
+        font-size: 0.75rem;
+        color: #999;
+    }
+
+    /* Doctor card - seleção moderna */
+    .schedule-medico-card {
+        border: 2px solid #eee;
+        border-radius: 16px;
+        padding: 0;
+        cursor: pointer;
+        transition: all 0.35s ease;
+        background: #fff;
+        overflow: hidden;
+        position: relative;
+    }
+    .schedule-medico-card:hover {
+        border-color: #ff6b9d;
+        transform: translateY(-4px);
+        box-shadow: 0 12px 35px rgba(255,107,157,0.15);
+    }
+    .schedule-medico-card.selected {
+        border-color: #ff6b9d;
+        background: #fff;
+        box-shadow: 0 8px 30px rgba(255,107,157,0.2);
+        border-width: 2px;
+    }
+    .schedule-medico-card.selected .schedule-check {
+        display: flex;
+    }
+    .schedule-medico-card .card-body {
+        padding: 1rem;
+    }
+    .schedule-medico-card.selected::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(180deg, #ff6b9d, #c8a2c8);
+        border-radius: 0 4px 4px 0;
+    }
+    .schedule-check {
+        display: none;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 26px;
+        height: 26px;
+        background: linear-gradient(135deg, #ff6b9d, #c8a2c8);
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 0.85rem;
+        box-shadow: 0 2px 8px rgba(255,107,157,0.3);
+    }
+
+    /* Sidebar resumo */
+    #resumoAgendamento .resumo-item {
+        padding: 12px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        background: #fafafa;
+        margin-bottom: 10px;
+        border-left: 3px solid #ff6b9d;
+    }
+    #resumoAgendamento .resumo-item:hover {
+        background: #fff5f8;
+        transform: translateX(3px);
+    }
+    #resumoAgendamento .resumo-item small {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #999;
+    }
+    #resumoAgendamento .resumo-item strong {
+        font-size: 0.95rem;
+    }
+
+    /* Step content fade transition */
+    .step-content {
+        animation: stepFadeIn 0.4s ease;
+    }
+    @keyframes stepFadeIn {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+        .wizard-circle { width: 36px; height: 36px; font-size: 0.85rem; }
+        .wizard-label { font-size: 0.6rem; letter-spacing: 0; }
+        .wizard-line { min-width: 12px; margin: 0 -2px; margin-bottom: 18px; }
+    }
+    @media (max-width: 576px) {
+        .wizard-circle { width: 30px; height: 30px; font-size: 0.75rem; border-width: 2px; }
+        .wizard-label { font-size: 0.55rem; }
+        .wizard-line { min-width: 8px; height: 2px; margin: 0 -1px; margin-bottom: 16px; }
+        .schedule-medico-card .card-body { padding: 0.75rem; }
+        .schedule-medico-card img { width: 55px; height: 55px !important; }
+    }
+</style>
+
+
+    <!-- ==================== PAGE HERO BANNER ==================== -->
+    <section class="page-hero-banner py-4" style="background: linear-gradient(135deg, rgba(238,130,170,0.10) 0%, rgba(205,178,214,0.12) 100%); border-bottom: 1px solid rgba(238,130,170,0.12);">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <nav aria-label="breadcrumb" class="mb-2">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="index.html" class="text-pink text-decoration-none"><i class="bi bi-house-heart"></i> Início</a></li>
+                            <li class="breadcrumb-item active text-muted">Agendamento</li>
+                        </ol>
+                    </nav>
+                    <h1 class="display-5 fw-bold mb-1">Agendamento de <span class="text-gradient">Consulta</span></h1>
+                    <p class="lead text-muted mb-0">Agende de forma rápida, segura e fácil com nossos especialistas.</p>
+                </div>
+                <div class="col-lg-4 d-none d-lg-flex justify-content-end">
+                    <img src="../assets/images/site/gynecology-consultation.webp" alt="Agendamento" class="img-fluid rounded-4 shadow-sm" style="max-height: 140px; object-fit: cover; width: 280px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container my-5">
+        <div class="text-center mb-5">
+            <div class="d-inline-flex align-items-center gap-2 bg-light-pink rounded-pill px-4 py-2 mb-3">
+                <i class="bi bi-calendar-heart text-pink"></i>
+                <span class="text-pink fw-semibold">Agende sua consulta em 5 passos</span>
+            </div>
+            <p class="lead text-muted">Preencha os dados abaixo para agendar sua consulta com nossos especialistas</p>
+        </div>
+
+        <!-- Verificação de Login -->
+        <div id="loginAlert" class="alert alert-warning text-center rounded-4 shadow-sm d-none">
+            <i class="bi bi-exclamation-triangle-fill fs-4 me-2"></i>
+            <strong>Você precisa estar logado para agendar uma consulta!</strong>
+            <div class="mt-2">
+                <a href="login.html" class="btn btn-gradient btn-sm rounded-pill">Fazer Login</a>
+                <a href="cadastro.html" class="btn btn-outline-pink btn-sm rounded-pill">Criar Conta</a>
+            </div>
+        </div>
+
+        <!-- Formulário de Agendamento -->
+        <div id="agendamentoForm" class="row g-4 d-none">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                    <div class="card-header bg-white py-3 px-4 border-bottom">
+                        <div class="d-flex align-items-center justify-content-center wizard-steps-container">
+                            <div class="wizard-step active" data-step="1">
+                                <div class="wizard-circle shadow-sm">1</div>
+                                <div class="wizard-label">Médico</div>
+                            </div>
+                            <div class="wizard-line" data-line="1"></div>
+                            <div class="wizard-step" data-step="2">
+                                <div class="wizard-circle shadow-sm">2</div>
+                                <div class="wizard-label">Procedimento</div>
+                            </div>
+                            <div class="wizard-line" data-line="2"></div>
+                            <div class="wizard-step" data-step="3">
+                                <div class="wizard-circle shadow-sm">3</div>
+                                <div class="wizard-label">Data</div>
+                            </div>
+                            <div class="wizard-line" data-line="3"></div>
+                            <div class="wizard-step" data-step="4">
+                                <div class="wizard-circle shadow-sm">4</div>
+                                <div class="wizard-label">Horário</div>
+                            </div>
+                            <div class="wizard-line" data-line="4"></div>
+                            <div class="wizard-step" data-step="5">
+                                <div class="wizard-circle shadow-sm">5</div>
+                                <div class="wizard-label">Dados</div>
+                            </div>
+                            <div class="wizard-line" data-line="5"></div>
+                            <div class="wizard-step" data-step="6">
+                                <div class="wizard-circle shadow-sm">6</div>
+                                <div class="wizard-label">Confirmação</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-4 p-lg-5">
+                        <!-- Etapa 1: Escolha do Médico -->
+                        <div id="step1Content">
+                            <div class="d-flex align-items-center gap-3 mb-4">
+                                <div class="rounded-circle bg-light-pink d-flex align-items-center justify-content-center" style="width:48px;height:48px">
+                                    <i class="bi bi-person-badge text-pink fs-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="fw-bold mb-1">Escolha o médico</h3>
+                                    <p class="text-muted mb-0 small">Selecione um de nossos especialistas</p>
+                                </div>
+                            </div>
+                            <div class="row g-3" id="medicosList">
+                                <div class="text-center py-4">
+                                    <div class="spinner-border text-pink" role="status">
+                                        <span class="visually-hidden">Carregando médicos...</span>
+                                    </div>
+                                    <p class="text-muted mt-2">Carregando médicos disponíveis...</p>
+                                </div>
+                        </div>
+                        <div class="mt-4 d-flex justify-content-end">
+                            <button class="btn btn-gradient rounded-pill px-5 next-step shadow-sm" data-next="2">
+                                Próximo <i class="bi bi-arrow-right ms-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Etapa 2: Escolha do Procedimento -->
+                    <div id="step2Content" style="display: none;">
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="rounded-circle bg-light-pink d-flex align-items-center justify-content-center" style="width:48px;height:48px">
+                                <i class="bi bi-clipboard2-pulse text-pink fs-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold mb-1">Escolha o procedimento</h3>
+                                <p class="text-muted mb-0 small">Selecione o tipo de consulta, exame ou procedimento desejado</p>
+                            </div>
+                        </div>
+                        <div id="selectedDoctorBadgeProc" class="mb-3"></div>
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold"><i class="bi bi-clipboard2-pulse me-1 text-pink"></i> Procedimento</label>
+                            <div class="row g-3" id="procedimentosGrid">
+                                <div class="col-12 text-center py-4">
+                                    <i class="bi bi-clipboard2-pulse fs-1 text-muted"></i>
+                                    <p class="text-muted mt-2">Selecione um médico primeiro</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 d-flex justify-content-between">
+                            <button class="btn btn-outline-pink rounded-pill px-4 prev-step shadow-sm" data-prev="1">
+                                <i class="bi bi-arrow-left me-1"></i> Voltar
+                            </button>
+                            <button class="btn btn-gradient rounded-pill px-5 next-step shadow-sm" data-next="3" id="nextStep2Btn" disabled>
+                                Próximo <i class="bi bi-arrow-right ms-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Etapa 3: Escolha da Data -->
+                    <div id="step3Content" style="display: none;">
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="rounded-circle bg-light-pink d-flex align-items-center justify-content-center" style="width:48px;height:48px">
+                                <i class="bi bi-calendar-week text-pink fs-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold mb-1">Escolha a data</h3>
+                                <p class="text-muted mb-0 small">Selecione o dia ideal para sua consulta</p>
+                            </div>
+                        </div>
+                        <div id="selectedDoctorBadge" class="mb-3"></div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold"><i class="bi bi-calendar3 me-1 text-pink"></i> Data da consulta</label>
+                            <input type="text" id="datePicker" class="form-control form-control-lg rounded-pill" placeholder="Clique aqui para selecionar uma data">
+                        </div>
+                        <div class="mt-4 d-flex justify-content-between">
+                            <button class="btn btn-outline-pink rounded-pill px-4 prev-step shadow-sm" data-prev="2">
+                                <i class="bi bi-arrow-left me-1"></i> Voltar
+                            </button>
+                            <button class="btn btn-gradient rounded-pill px-5 next-step shadow-sm" data-next="4">
+                                Próximo <i class="bi bi-arrow-right ms-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Etapa 4: Escolha do Horário -->
+                    <div id="step4Content" style="display: none;">
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="rounded-circle bg-light-pink d-flex align-items-center justify-content-center" style="width:48px;height:48px">
+                                <i class="bi bi-clock text-pink fs-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold mb-1">Escolha o horário</h3>
+                                <p class="text-muted mb-0 small">Selecione o melhor horário disponível</p>
+                            </div>
+                        </div>
+                        <div id="selectedDoctorBadge2" class="mb-3"></div>
+                        <div id="selectedDateBadge" class="mb-3"></div>
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold"><i class="bi bi-clock-history me-1 text-pink"></i> Horários disponíveis</label>
+                            <div class="row g-2" id="horariosGrid">
+                                <div class="col-12 text-center py-4">
+                                    <i class="bi bi-clock fs-1 text-muted"></i>
+                                    <p class="text-muted mt-2">Selecione uma data primeiro</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold"><i class="bi bi-credit-card me-1 text-pink"></i> Convênio</label>
+                            <select id="convenioSelect" class="form-select form-select-lg rounded-pill">
+                                <option value="Particular">Particular</option>
+                                <option value="Unimed">Unimed</option>
+                                <option value="Bradesco Saúde">Bradesco Saúde</option>
+                                <option value="Amil">Amil</option>
+                                <option value="SulAmérica">SulAmérica</option>
+                                <option value="NotreDame Intermédica">NotreDame Intermédica</option>
+                            </select>
+                        </div>
+                        <div class="mt-4 d-flex justify-content-between">
+                            <button class="btn btn-outline-pink rounded-pill px-4 prev-step shadow-sm" data-prev="3">
+                                <i class="bi bi-arrow-left me-1"></i> Voltar
+                            </button>
+                            <button class="btn btn-gradient rounded-pill px-5 next-step shadow-sm" data-next="5">
+                                Próximo <i class="bi bi-arrow-right ms-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Etapa 5: Dados do Paciente -->
+                    <div id="step5Content" style="display: none;">
+                            <div class="d-flex align-items-center gap-3 mb-4">
+                                <div class="rounded-circle bg-light-pink d-flex align-items-center justify-content-center" style="width:48px;height:48px">
+                                    <i class="bi bi-person-lines-fill text-pink fs-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="fw-bold mb-1">Seus dados</h3>
+                                    <p class="text-muted mb-0 small">Informe seus dados para a consulta</p>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold"><i class="bi bi-person me-1 text-pink"></i> Nome completo <span class="text-danger">*</span></label>
+                                    <input type="text" id="pacienteNome" class="form-control form-control-lg rounded-pill" placeholder="Seu nome completo" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold"><i class="bi bi-telephone me-1 text-pink"></i> Telefone <span class="text-danger">*</span></label>
+                                    <input type="tel" id="pacienteTelefone" class="form-control form-control-lg rounded-pill" placeholder="(11) 99999-9999" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold"><i class="bi bi-envelope me-1 text-pink"></i> E-mail <span class="text-danger">*</span></label>
+                                    <input type="email" id="pacienteEmail" class="form-control form-control-lg rounded-pill" placeholder="seu@email.com" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold"><i class="bi bi-credit-card-2-front me-1 text-pink"></i> CPF <span class="text-danger">*</span></label>
+                                    <input type="text" id="pacienteCPF" class="form-control form-control-lg rounded-pill" placeholder="000.000.000-00" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold"><i class="bi bi-calendar-heart me-1 text-pink"></i> Data de nascimento <span class="text-danger">*</span></label>
+                                    <input type="date" id="pacienteNascimento" class="form-control form-control-lg rounded-pill" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-semibold"><i class="bi bi-chat-dots me-1 text-pink"></i> Observações</label>
+                                    <textarea id="pacienteObs" class="form-control rounded-4" rows="3" placeholder="Alguma observação relevante? (opcional)" style="resize:vertical"></textarea>
+                                </div>
+                            </div>
+                            <div class="mt-4 d-flex justify-content-between">
+                                <button class="btn btn-outline-pink rounded-pill px-4 prev-step shadow-sm" data-prev="4">
+                                    <i class="bi bi-arrow-left me-1"></i> Voltar
+                                </button>
+                                <button class="btn btn-gradient rounded-pill px-5 next-step shadow-sm" data-next="6">
+                                    Próximo <i class="bi bi-arrow-right ms-1"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Etapa 6: Confirmação -->
+                        <div id="step6Content" style="display: none;">
+                            <div class="d-flex align-items-center gap-3 mb-4">
+                                <div class="rounded-circle bg-success d-flex align-items-center justify-content-center" style="width:48px;height:48px">
+                                    <i class="bi bi-check-circle text-white fs-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="fw-bold mb-1">Confirme seus dados</h3>
+                                    <p class="text-muted mb-0 small">Revise todas as informações antes de confirmar</p>
+                                </div>
+                            </div>
+                            <div class="bg-light-pink rounded-4 p-4 mb-4 border border-pink border-opacity-25">
+                                <div id="confirmationDetails"></div>
+                            </div>
+                            <div class="alert alert-info rounded-4 border-0">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-info-circle fs-5"></i>
+                                    <span>Ao confirmar, você receberá um e-mail com os detalhes da sua consulta.</span>
+                                </div>
+                            </div>
+                            <div class="mt-4 d-flex justify-content-between">
+                                <button class="btn btn-outline-pink rounded-pill px-4 prev-step shadow-sm" data-prev="5">
+                                    <i class="bi bi-arrow-left me-1"></i> Voltar
+                                </button>
+                                <button class="btn btn-success rounded-pill px-5 shadow-sm" id="confirmarAgendamento">
+                                    <i class="bi bi-check2-circle me-1"></i> Confirmar Agendamento
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumo do agendamento (sidebar) -->
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-lg rounded-4 sticky-top" style="top: 90px;">
+                    <div class="card-header bg-gradient-pink text-white text-center py-3 rounded-top-4 border-0">
+                        <h5 class="mb-0 fw-bold"><i class="bi bi-clipboard-check me-2"></i> Resumo</h5>
+                    </div>
+                    <div class="card-body p-4" id="resumoCardBody">
+                        <div id="resumoAgendamento">
+                            <div class="text-center py-4">
+                                <i class="bi bi-inbox fs-1 text-muted opacity-50 d-block mb-2"></i>
+                                <p class="text-muted mb-0">Nenhum item selecionado</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white border-top text-center py-3" id="resumoFooter" style="display:none;">
+                        <small class="text-muted"><i class="bi bi-shield-check text-success me-1"></i> Dados protegidos</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+================================================================================
+COMPONENTE: FOOTER - Bloom Maternity
+DESCRIÇÃO: Rodapé completo com informações de contato, links úteis, 
+           redes sociais, newsletter, selos de segurança e copyright.
+================================================================================
+-->
+
+<footer class="footer bg-dark text-white pt-5 pb-4 mt-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Coluna 1: Logo e descrição -->
+            <div class="col-lg-4 col-md-6">
+                <div class="footer-brand mb-3">
+                    <h2 class="fw-bold mb-0">
+                        <span class="text-pink">Bloom</span> 
+                        <span class="text-lilac">Maternity</span>
+                    </h2>
+                    <p class="text-white-50 small mt-2">Clínica de Obstetrícia</p>
+                </div>
+                <p class="text-white-50 mb-3" style="line-height: 1.6;">
+                    Cuidando de você do início à maternidade. Excelência em obstetrícia 
+                    com atendimento humanizado e tecnologia de ponta.
+                </p>
+                
+                <!-- Selos de segurança -->
+                <div class="d-flex gap-3 mt-4">
+                    <div class="security-seal text-center">
+                        <i class="bi bi-shield-check fs-3 text-success"></i>
+                        <p class="small mb-0 text-white-50">Ambiente Seguro</p>
+                    </div>
+                    <div class="security-seal text-center">
+                        <i class="bi bi-lock-fill fs-3 text-warning"></i>
+                        <p class="small mb-0 text-white-50">Dados Protegidos</p>
+                    </div>
+                    <div class="security-seal text-center">
+                        <i class="bi bi-award-fill fs-3 text-info"></i>
+                        <p class="small mb-0 text-white-50">Certificado</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Coluna 2: Links rápidos -->
+            <div class="col-lg-2 col-md-6">
+                <h5 class="fw-bold mb-3 text-pink">Links Rápidos</h5>
+                <ul class="list-unstyled footer-links">
+                    <li class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none transition">Home</a></li>
+                    <li class="mb-2"><a href="medicos.html" class="text-white-50 text-decoration-none transition">Médicos</a></li>
+                    <li class="mb-2"><a href="servicos.html" class="text-white-50 text-decoration-none transition">Serviços</a></li>
+                    <li class="mb-2"><a href="agendamento.html" class="text-white-50 text-decoration-none transition">Agendamento</a></li>
+                    <li class="mb-2"><a href="telemedicina.html" class="text-white-50 text-decoration-none transition">Telemedicina</a></li>
+                    <li class="mb-2"><a href="duvidas.html" class="text-white-50 text-decoration-none transition">Dúvidas Frequentes</a></li>
+                </ul>
+            </div>
+            
+            <!-- Coluna 3: Informações institucionais -->
+            <div class="col-lg-2 col-md-6">
+                <h5 class="fw-bold mb-3 text-pink">Institucional</h5>
+                <ul class="list-unstyled footer-links">
+                    <li class="mb-2"><a href="planos.html" class="text-white-50 text-decoration-none transition">Planos de Saúde</a></li>
+                    <li class="mb-2"><a href="unidades.html" class="text-white-50 text-decoration-none transition">Nossas Unidades</a></li>
+                    <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none transition">Trabalhe Conosco</a></li>
+                    <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none transition">Política de Privacidade</a></li>
+                    <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none transition">Termos de Uso</a></li>
+                    <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none transition">LGPD</a></li>
+                </ul>
+            </div>
+            
+            <!-- Coluna 4: Contato e redes sociais -->
+            <div class="col-lg-4 col-md-6">
+                <h5 class="fw-bold mb-3 text-pink">Contato</h5>
+                <ul class="list-unstyled contact-info">
+                    <li class="mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-telephone text-pink fs-5"></i>
+                        <span class="text-white-50">(11) 3333-4444</span>
+                    </li>
+                    <li class="mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-whatsapp text-success fs-5"></i>
+                        <span class="text-white-50">(11) 99999-9999</span>
+                    </li>
+                    <li class="mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-envelope text-pink fs-5"></i>
+                        <span class="text-white-50">contato@bloommaternity.com.br</span>
+                    </li>
+                    <li class="mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-clock-history text-pink fs-5"></i>
+                        <span class="text-white-50">Seg-Sex: 8h às 20h | Sáb: 8h às 14h</span>
+                    </li>
+                </ul>
+                
+                <!-- Redes sociais -->
+                <div class="social-links mt-3">
+                    <h6 class="mb-3 text-white-50">Siga-nos</h6>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="btn-social-footer" aria-label="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="btn-social-footer" aria-label="Facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="btn-social-footer" aria-label="WhatsApp">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                        <a href="#" class="btn-social-footer" aria-label="YouTube">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                        <a href="#" class="btn-social-footer" aria-label="LinkedIn">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <hr class="my-4 bg-secondary opacity-25">
+        
+        <!-- Newsletter -->
+        <div class="row mb-4">
+            <div class="col-lg-8 mx-auto text-center">
+                <h5 class="fw-bold mb-3 text-pink">Receba novidades e dicas de saúde</h5>
+                <p class="text-white-50 small mb-3">Inscreva-se para receber conteúdos exclusivos sobre cuidados na gestação e saúde da mulher</p>
+                <div class="input-group justify-content-center flex-wrap gap-2">
+                    <input type="email" class="form-control rounded-pill w-75 w-md-auto" 
+                           placeholder="Seu melhor e-mail" id="newsletterEmail"
+                           style="max-width: 350px;">
+                    <button class="btn btn-gradient rounded-pill px-4" onclick="subscribeNewsletter()">
+                        <i class="bi bi-send"></i> Assinar
+                    </button>
+                </div>
+                <p class="small text-white-50 mt-2">
+                    <i class="bi bi-shield-check"></i> Seu e-mail está seguro. Não enviamos spam.
+                </p>
+            </div>
+        </div>
+        
+        <hr class="my-4 bg-secondary opacity-25">
+        
+        <!-- Copyright e formas de pagamento -->
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start">
+                <p class="text-white-50 small mb-0">
+                    &copy; 2024 Bloom Maternity - Clínica de Obstetrícia. 
+                    <br class="d-md-none">Todos os direitos reservados.
+                </p>
+            </div>
+            <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                <div class="payment-methods d-flex justify-content-center justify-content-md-end gap-2 flex-wrap">
+                    <span class="badge bg-dark text-white-50 border px-3 py-2 rounded-pill">
+                        <i class="bi bi-credit-card"></i> Visa
+                    </span>
+                    <span class="badge bg-dark text-white-50 border px-3 py-2 rounded-pill">
+                        <i class="bi bi-credit-card"></i> Mastercard
+                    </span>
+                    <span class="badge bg-dark text-white-50 border px-3 py-2 rounded-pill">
+                        <i class="bi bi-barcode"></i> Boleto
+                    </span>
+                    <span class="badge bg-dark text-white-50 border px-3 py-2 rounded-pill">
+                        <i class="bi bi-qr-code"></i> PIX
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Créditos do desenvolvedor -->
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <p class="small text-white-50 opacity-50 mb-0">
+                    Desenvolvido com <i class="bi bi-heart-fill text-danger"></i> para cuidar de você e do seu bebê
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .footer {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #ff6b9d, #c8a2c8);
+    }
+    
+    .footer-links a {
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+    
+    .footer-links a:hover {
+        color: #ff6b9d !important;
+        transform: translateX(5px);
+    }
+    
+    .btn-social-footer {
+        width: 38px;
+        height: 38px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+    
+    .btn-social-footer:hover {
+        background: #ff6b9d;
+        color: white;
+        transform: translateY(-3px);
+    }
+    
+    .contact-info li {
+        transition: all 0.3s ease;
+    }
+    
+    .contact-info li:hover {
+        transform: translateX(5px);
+    }
+    
+    .security-seal {
+        transition: all 0.3s ease;
+    }
+    
+    .security-seal:hover {
+        transform: translateY(-3px);
+    }
+    
+    @media (max-width: 768px) {
+        .footer {
+            text-align: center;
+        }
+        
+        .contact-info li {
+            justify-content: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .footer-links a:hover {
+            transform: none;
+        }
+    }
+</style>
+
+<script>
+    function subscribeNewsletter() {
+        const email = document.getElementById('newsletterEmail');
+        if (!email) return;
+        
+        const emailValue = email.value.trim();
+        
+        if (!emailValue) {
+            alert('Por favor, informe seu e-mail.');
+            email.focus();
+            return;
+        }
+        
+        if (!isValidEmail(emailValue)) {
+            alert('Por favor, informe um e-mail válido.');
+            email.focus();
+            return;
+        }
+        
+        console.log('Newsletter subscription:', emailValue);
+        
+        alert(`Obrigado por se inscrever! Enviaremos novidades para ${emailValue}`);
+        email.value = '';
+    }
+    
+    function isValidEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+    
+    window.subscribeNewsletter = subscribeNewsletter;
+</script>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/bloom-data.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/agendamento.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            const token = localStorage.getItem('bloom_token') || sessionStorage.getItem('bloom_token');
+            const usuario = JSON.parse(localStorage.getItem('bloom_user') || sessionStorage.getItem('bloom_user') || '{}');
+            
+            if (!token || !usuario.id) {
+                $('#loginAlert').removeClass('d-none');
+                $('#agendamentoForm').addClass('d-none');
+            } else {
+                $('#loginAlert').addClass('d-none');
+                $('#agendamentoForm').removeClass('d-none');
+                
+                carregarMedicos();
+            }
+        });
+    </script>
+</body>
+</html>

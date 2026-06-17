@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Bloom Maternity</title>
+    
+    <!-- Bootstrap 5 CSS + Icons + Google Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/visual-improvements.css">
+    
+    <style>
+        .login-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fff4f8 0%, #f5eef5 50%, #fff4f8 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-page::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(238, 130, 170, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .login-page::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(205, 178, 214, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .login-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(238, 130, 170, 0.1);
+            box-shadow: 0 25px 60px rgba(238, 130, 170, 0.15);
+            transition: all 0.4s ease;
+        }
+        
+        .login-card:hover {
+            box-shadow: 0 30px 70px rgba(238, 130, 170, 0.2);
+            transform: translateY(-4px);
+        }
+        
+        .login-header {
+            background: linear-gradient(135deg, #ee82aa 0%, #d96d95 50%, #cdb2d6 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+        
+        .login-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            animation: pulse 2s infinite;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .login-input {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 14px 18px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+        
+        .login-input:focus {
+            border-color: #ee82aa;
+            box-shadow: 0 0 0 4px rgba(238, 130, 170, 0.15);
+            background: #fff;
+            outline: none;
+        }
+        
+        .login-input::placeholder {
+            color: #adb5bd;
+        }
+        
+        .login-btn {
+            background: linear-gradient(135deg, #ee82aa 0%, #d96d95 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 14px 24px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(238, 130, 170, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .login-btn:hover::before {
+            left: 100%;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(238, 130, 170, 0.45);
+        }
+        
+        .login-btn:active {
+            transform: translateY(0);
+        }
+        
+        .login-btn:disabled {
+            opacity: 0.7;
+            transform: none;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #adb5bd;
+            font-size: 0.85rem;
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .divider span {
+            padding: 0 1rem;
+            background: #fff;
+        }
+        
+        .social-btn {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 12px 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background: #fff;
+            color: #495057;
+        }
+        
+        .social-btn:hover {
+            border-color: #ee82aa;
+            color: #ee82aa;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(238, 130, 170, 0.15);
+        }
+        
+        .trust-badge {
+            background: linear-gradient(135deg, rgba(238, 130, 170, 0.1) 0%, rgba(205, 178, 214, 0.1) 100%);
+            border: 1px solid rgba(238, 130, 170, 0.2);
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 0.85rem;
+        }
+        
+        .decoration-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(238, 130, 170, 0.1) 0%, rgba(205, 178, 214, 0.1) 100%);
+            pointer-events: none;
+        }
+        
+        .decoration-circle-1 {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            right: -100px;
+        }
+        
+        .decoration-circle-2 {
+            width: 200px;
+            height: 200px;
+            bottom: -50px;
+            left: -50px;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #adb5bd;
+            cursor: pointer;
+            padding: 4px 8px;
+            transition: color 0.3s ease;
+        }
+        
+        .password-toggle:hover {
+            color: #ee82aa;
+        }
+        
+        .password-input-wrapper {
+            position: relative;
+        }
+        
+        .password-input-wrapper .form-control {
+            padding-right: 48px;
+        }
+        
+        .remember-check {
+            accent-color: #ee82aa;
+        }
+        
+        @media (max-width: 991.98px) {
+            .login-card {
+                margin: 1rem;
+            }
+        }
+        
+        @media (max-width: 575.98px) {
+            .login-header {
+                padding: 2rem 1rem !important;
+            }
+            
+            .login-icon {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .login-icon i {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="login-page">
+    <!-- Decorative elements -->
+    <div class="decoration-circle decoration-circle-1"></div>
+    <div class="decoration-circle decoration-circle-2"></div>
+    
+    <!-- === NAVBAR SIMPLES PARA PÁGINAS DE AUTENTICAÇÃO === -->
+    <nav class="navbar navbar-expand-lg" style="background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(238, 130, 170, 0.1);">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-2" href="index.html">
+                <span class="text-pink">Bloom</span> <span class="text-lilac">Maternity</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="d-flex align-items-center py-5 position-relative" style="min-height: calc(100vh - 74px);">
+        <div class="container position-relative" style="z-index: 1;">
+            <div class="row justify-content-center align-items-center g-5">
+                <!-- Decorative left side for larger screens -->
+                <div class="col-lg-5 d-none d-lg-block">
+                    <div class="text-center">
+                        <img src="../assets/images/site/clinic-reception.webp" alt="Bloom Maternity" class="img-fluid rounded-4 shadow-lg mb-4" style="max-height: 340px; object-fit: cover; border: 4px solid rgba(255, 255, 255, 0.8);">
+                        <h3 class="fw-bold mb-2" style="background: linear-gradient(135deg, #ee82aa, #cdb2d6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Bloom Maternity</h3>
+                        <p class="text-muted">Cuidado premium para gestantes e mulheres em todas as fases da vida.</p>
+                    </div>
+                </div>
+                <div class="col-md-10 col-lg-6 col-xl-5">
+                    <!-- === CARD DE LOGIN === -->
+                    <div class="card login-card border-0 rounded-4 overflow-hidden">
+                        <div class="card-header login-header text-white text-center py-4 border-0 position-relative">
+                            <div class="login-icon">
+                                <i class="bi bi-heart-fill fs-2"></i>
+                            </div>
+                            <h3 class="mb-0 mt-2 fw-bold position-relative" style="z-index: 1;">Bem-vinda de volta!</h3>
+                            <p class="mb-0 position-relative" style="z-index: 1; opacity: 0.9;">Faça login para acessar sua conta</p>
+                        </div>
+                        <div class="card-body p-4 p-lg-5">
+                            <!-- Formulário de Login -->
+                            <form id="loginForm">
+                                <!-- Campo E-mail -->
+                                <div class="mb-4">
+                                    <label for="email" class="form-label fw-semibold">
+                                        <i class="bi bi-envelope text-pink"></i> E-mail
+                                    </label>
+                                    <input type="email" class="form-control login-input" 
+                                           id="email" name="email" 
+                                           placeholder="seu@email.com" required>
+                                    <div class="invalid-feedback">Por favor, informe um e-mail válido.</div>
+                                </div>
+                                
+                                <!-- Campo Senha -->
+                                <div class="mb-4">
+                                    <label for="password" class="form-label fw-semibold">
+                                        <i class="bi bi-lock text-pink"></i> Senha
+                                    </label>
+                                    <div class="password-input-wrapper">
+                                        <input type="password" class="form-control login-input" 
+                                               id="password" name="password" 
+                                               placeholder="••••••••" required>
+                                        <button class="password-toggle" type="button" id="togglePassword">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="invalid-feedback">Senha incorreta ou inválida.</div>
+                                </div>
+                                
+                                <!-- Lembrar-me e Esqueci senha -->
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input remember-check" id="remember">
+                                        <label class="form-check-label text-muted" for="remember">Lembrar de mim</label>
+                                    </div>
+                                    <a href="#" class="text-pink text-decoration-none fw-medium" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">
+                                        Esqueceu a senha?
+                                    </a>
+                                </div>
+                                
+                                <!-- Botão de Login -->
+                                <button type="submit" class="btn login-btn w-100 rounded-pill py-3 mb-4" id="loginBtn">
+                                    <i class="bi bi-box-arrow-in-right"></i> Entrar
+                                </button>
+                                
+                                <!-- Divisor -->
+                                <div class="divider mb-4">
+                                    <span>ou</span>
+                                </div>
+                                
+                                <!-- Botão de Cadastro -->
+                                <a href="cadastro.html" class="btn btn-outline-pink w-100 rounded-pill py-3 fw-semibold">
+                                    <i class="bi bi-person-plus"></i> Criar nova conta
+                                </a>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Trust badge -->
+                    <div class="trust-badge text-center mt-4">
+                        <i class="bi bi-shield-check text-pink"></i> 
+                        <span class="text-muted">Ambiente seguro e protegido</span>
+                    </div>
+                    
+                    <!-- Termos -->
+                    <div class="text-center mt-3">
+                        <p class="small text-muted mb-0">
+                            Ao fazer login, você concorda com nossos 
+                            <a href="#" class="text-pink text-decoration-none">Termos de Uso</a> e 
+                            <a href="#" class="text-pink text-decoration-none">Política de Privacidade</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Esqueci a Senha -->
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 shadow-lg">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="forgotPasswordModalLabel">
+                        <i class="bi bi-envelope-paper text-pink"></i> Recuperar senha
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted">Informe seu e-mail cadastrado e enviaremos instruções para redefinir sua senha.</p>
+                    <input type="email" class="form-control login-input rounded-pill" id="resetEmail" placeholder="seu@email.com">
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn login-btn rounded-pill px-4" onclick="sendResetLink()">Enviar link</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS + Custom JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/api.js"></script>
+    
+    <script>
+        // Toggle password visibility
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('bi-eye');
+                icon.classList.add('bi-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('bi-eye-slash');
+                icon.classList.add('bi-eye');
+            }
+        });
+        
+        // Função para enviar link de redefinição (mock para demonstração)
+        function sendResetLink() {
+            const email = document.getElementById('resetEmail').value;
+            if (email) {
+                alert(`Um link de redefinição foi enviado para ${email}`);
+                bootstrap.Modal.getInstance(document.getElementById('forgotPasswordModal')).hide();
+            } else {
+                alert('Por favor, informe seu e-mail.');
+            }
+        }
+        
+        // Validação do formulário de login
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
+            
+            try {
+                // Chama a função de login do auth.js
+                const result = await login(email, password, remember);
+                
+                if (result.success) {
+                    // Redireciona conforme perfil do usuário
+                    const params = new URLSearchParams(window.location.search);
+                    const explicitRedirect = params.get('redirect');
+                    let destino;
+
+                    if (explicitRedirect) {
+                        destino = explicitRedirect;
+                    } else if (result.user && (result.user.is_admin || result.user.tipo_usuario === 'admin')) {
+                        destino = 'admin-painel.html';
+                    } else {
+                        destino = 'meus-agendamentos.html';
+                    }
+
+                    window.location.href = destino;
+                } else {
+                    // Mostra erro
+                    alert(result.message || 'Erro ao fazer login. Verifique suas credenciais.');
+                }
+            } catch (error) {
+                console.error('Erro no login:', error);
+                alert('Erro ao conectar com o servidor. Tente novamente mais tarde.');
+            }
+        });
+    </script>
+</body>
+</html>

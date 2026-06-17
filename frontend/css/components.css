@@ -1,0 +1,1599 @@
+/*
+================================================================================
+ARQUIVO: components.css
+PROJETO: Bloom Maternity - Clínica de Obstetrícia
+DESCRIÇÃO: Estilos específicos para componentes reutilizáveis do site,
+           incluindo cards, carrosséis, modais, accordions, etc.
+AUTOR: Bloom Maternity Team
+VERSÃO: 1.9.0
+================================================================================
+*/
+
+/* ==================== DOCTOR CARDS (MÉDICOS) ==================== */
+.doctor-card {
+    flex: 0 0 auto;
+    width: 320px;
+    margin-right: 24px;
+    transition: all var(--transition-base);
+}
+
+.doctor-card .card {
+    transition: all var(--transition-base);
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.doctor-card:hover .card {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-xl);
+}
+
+.doctor-image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.doctor-image-wrapper img {
+    transition: transform var(--transition-slow);
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.doctor-card:hover .doctor-image-wrapper img {
+    transform: scale(1.05);
+}
+
+.doctor-social-overlay {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    transition: bottom var(--transition-base);
+}
+
+.doctor-card:hover .doctor-social-overlay {
+    bottom: 0;
+}
+
+.btn-social {
+    width: 35px;
+    height: 35px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pink-primary);
+    transition: all var(--transition-fast);
+}
+
+.btn-social:hover {
+    background: var(--pink-primary);
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Botão único de agendar no card médico */
+.doctor-card .card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.25rem;
+}
+
+.doctor-card .card-title {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gray-800);
+}
+
+.doctor-card .card-text {
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    flex: 1;
+    color: var(--gray-600);
+}
+
+.doctor-card .btn-agendar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    border-radius: var(--border-radius-pill);
+    transition: all var(--transition-base);
+    cursor: pointer;
+    background-color: var(--pink-primary);
+    color: white;
+    border: none;
+    margin-top: auto;
+}
+
+.doctor-card .btn-agendar:hover {
+    background-color: var(--pink-primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Esconder botão de ver perfil se existir */
+.doctor-card .btn-outline-pink,
+.doctor-card a[href*="perfil"],
+.doctor-card a[href*="profile"],
+.btn-profile {
+    display: none !important;
+}
+
+/* ==================== PERFIL DO MÉDICO - REMOVER BOTÃO FLUTUANTE ==================== */
+/* REMOVER COMPLETAMENTE qualquer botão agendar flutuante no canto inferior direito */
+.btn-agendar-fixed,
+.btn-agendar-floating,
+.floating-agendar,
+.agendar-flutuante,
+.fixed-agendar-btn,
+.profile-agendar-btn,
+.doctor-profile .btn-agendar-fixed,
+.doctor-details-section .btn-agendar-fixed,
+.availability-section .btn-agendar-fixed,
+.doctor-profile .floating-btn,
+.doctor-profile .fixed-btn,
+[class*="agendar-fixed"],
+[class*="agendar-floating"],
+[class*="floating-agendar"],
+[id*="agendar-fixed"],
+[id*="agendar-floating"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Garantir que o botão dark mode apareça normalmente */
+.theme-switch {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    z-index: 90;
+    transition: all var(--transition-base);
+    border: 1px solid var(--gray-200);
+}
+
+.theme-switch:hover {
+    transform: scale(1.1);
+}
+
+.theme-switch i {
+    font-size: 1.5rem;
+    color: var(--pink-primary);
+}
+
+/* Botões de abas do perfil do médico - não devem sumir o texto */
+.doctor-profile-tabs .nav-link,
+.profile-tabs .nav-link,
+.doctor-details-section .nav-link {
+    transition: all var(--transition-fast);
+}
+
+.doctor-profile-tabs .nav-link:hover,
+.profile-tabs .nav-link:hover,
+.doctor-details-section .nav-link:hover {
+    background-color: var(--pink-extra-light);
+    color: var(--pink-primary);
+}
+
+.doctor-profile-tabs .nav-link.active,
+.profile-tabs .nav-link.active,
+.doctor-details-section .nav-link.active {
+    background-color: var(--pink-primary);
+    color: white;
+}
+
+/* Garantir que o texto dos botões não suma */
+.doctor-profile-tabs .nav-link:focus,
+.profile-tabs .nav-link:focus,
+.doctor-details-section .nav-link:focus,
+.doctor-profile-tabs .nav-link:active,
+.profile-tabs .nav-link:active,
+.doctor-details-section .nav-link:active {
+    color: inherit;
+}
+
+/* Botão agendar dentro do perfil do médico (normal, não flutuante) */
+.doctor-profile .btn-agendar,
+.doctor-details-section .btn-agendar,
+.availability-section .btn-agendar {
+    display: inline-flex;
+    position: relative;
+    z-index: 1;
+}
+
+/* ==================== CARROSSEL DE MÉDICOS ==================== */
+.doctors-carousel-wrapper {
+    position: relative;
+    padding: 0 50px;
+}
+
+.doctors-carousel-container {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
+.doctors-carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+.doctors-track {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+
+.carousel-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-base);
+    z-index: 10;
+}
+
+.carousel-nav-btn:hover {
+    background: var(--pink-primary);
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+    left: 0;
+}
+
+.next-btn {
+    right: 0;
+}
+
+/* ==================== SERVICE CARDS (SERVIÇOS) ==================== */
+.service-card {
+    transition: all var(--transition-base);
+    border: 1px solid var(--gray-200);
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--pink-light);
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--pink-extra-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    transition: all var(--transition-base);
+}
+
+.service-card:hover .service-icon {
+    background: var(--pink-primary);
+}
+
+.service-card:hover .service-icon i {
+    color: white !important;
+}
+
+/* ==================== EXAM CARDS (EXAMES) ==================== */
+.exam-card {
+    transition: all var(--transition-base);
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--border-radius-lg);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.exam-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--pink-light);
+}
+
+.exam-icon {
+    margin-bottom: 1rem;
+}
+
+.exam-icon i {
+    transition: all var(--transition-base);
+    font-size: 2.5rem;
+}
+
+.exam-card:hover .exam-icon i {
+    transform: scale(1.1);
+}
+
+.exam-card h3, 
+.exam-card h4 {
+    margin-bottom: 0.75rem;
+}
+
+.exam-card p {
+    margin-bottom: 1rem;
+    flex: 1;
+}
+
+.exam-card .btn {
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+/* ==================== STEP PROGRESS (AGENDAMENTO) ==================== */
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.progress-steps::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gray-300);
+    z-index: 1;
+}
+
+.step {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    flex: 1;
+}
+
+.step-circle {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border: 2px solid var(--gray-300);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 8px;
+    font-weight: bold;
+    transition: all var(--transition-base);
+}
+
+.step.active .step-circle {
+    background: var(--pink-primary);
+    border-color: var(--pink-primary);
+    color: white;
+}
+
+.step.completed .step-circle {
+    background: var(--success);
+    border-color: var(--success);
+    color: white;
+}
+
+.step-label {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+}
+
+.step.active .step-label {
+    color: var(--pink-primary);
+    font-weight: 600;
+}
+
+/* ==================== MODAL ==================== */
+.modal-content {
+    border: none;
+    border-radius: var(--border-radius-lg);
+}
+
+.modal-header {
+    border-bottom: none;
+    padding: 1.5rem 1.5rem 0;
+}
+
+.modal-footer {
+    border-top: none;
+    padding: 0 1.5rem 1.5rem;
+}
+
+.modal-backdrop {
+    backdrop-filter: blur(4px);
+}
+
+/* ==================== ACCORDION PERSONALIZADO ==================== */
+.accordion-item {
+    border: none;
+    margin-bottom: 1rem;
+    background: transparent;
+    border-radius: var(--border-radius-md) !important;
+    overflow: hidden;
+}
+
+.accordion-button {
+    border-radius: var(--border-radius-md) !important;
+    background: #f5e6ec !important;
+    box-shadow: var(--shadow-sm);
+    font-weight: 600;
+    padding: 1rem 1.25rem;
+    color: #4a2a36 !important;
+    border: none;
+}
+
+.accordion-button:not(.collapsed) {
+    background: #ee82aa !important;
+    color: #ffffff !important;
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed)::after {
+    filter: brightness(0) invert(1);
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: transparent;
+}
+
+.accordion-body {
+    background: #ffffff;
+    border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+    padding: 1.25rem;
+    color: #5e6978;
+    border: 1px solid #f0dbe4;
+    border-top: none;
+}
+
+/* FAQ Categories */
+.faq-categories .nav-link {
+    background: #f5e6ec;
+    color: #4a2a36;
+    border-radius: var(--border-radius-pill);
+    padding: 0.6rem 1.2rem;
+    margin: 0.25rem;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+}
+
+.faq-categories .nav-link:hover,
+.faq-categories .nav-link.active {
+    background: #ee82aa;
+    color: #ffffff;
+}
+
+/* FAQ Contact Box */
+.faq-contact-card,
+.faq-contact-box {
+    background: #ee82aa !important;
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.faq-contact-card h4,
+.faq-contact-box h4 {
+    color: #ffffff !important;
+    margin-bottom: 1rem;
+}
+
+.faq-contact-card p,
+.faq-contact-box p {
+    color: #ffffff !important;
+    margin-bottom: 0.5rem;
+    opacity: 0.95;
+}
+
+.faq-contact-card .contact-details,
+.faq-contact-box .contact-details {
+    margin-top: 1rem;
+}
+
+.faq-contact-card a,
+.faq-contact-box a {
+    color: #ffffff !important;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.faq-contact-card a:hover,
+.faq-contact-box a:hover {
+    text-decoration: underline;
+    opacity: 0.9;
+}
+
+.faq-contact-card i,
+.faq-contact-box i {
+    color: #ffffff !important;
+    margin-right: 0.5rem;
+}
+
+/* ==================== BENEFITS CARDS (BENEFÍCIOS) ==================== */
+.benefit-card {
+    transition: all var(--transition-base);
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--border-radius-lg);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: transparent;
+}
+
+.benefit-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--pink-extra-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    transition: all var(--transition-base);
+}
+
+.benefit-card:hover .benefit-icon {
+    background: var(--pink-primary);
+    transform: scale(1.1);
+}
+
+.benefit-card:hover .benefit-icon i {
+    color: white !important;
+}
+
+.benefit-card h4 {
+    margin-bottom: 0.75rem;
+}
+
+.benefit-card p {
+    margin-bottom: 0;
+    flex: 1;
+}
+
+/* ==================== INSURANCE CARDS (CONVÊNIOS) ==================== */
+.insurance-card {
+    transition: all var(--transition-base);
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem;
+    text-align: center;
+    height: 100%;
+}
+
+.insurance-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.insurance-logo {
+    transition: all var(--transition-base);
+    width: 80px;
+    height: 80px;
+    background: var(--pink-extra-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+
+.insurance-card:hover .insurance-logo {
+    transform: scale(1.1);
+    background: var(--pink-primary);
+}
+
+.insurance-card:hover .insurance-logo i {
+    color: white !important;
+}
+
+/* ==================== UNIT CARDS (UNIDADES) ==================== */
+.unit-card {
+    transition: all var(--transition-base);
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    height: 100%;
+}
+
+.unit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl) !important;
+}
+
+.unit-image {
+    overflow: hidden;
+    position: relative;
+}
+
+.unit-image img {
+    transition: transform var(--transition-slow);
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.unit-card:hover .unit-image img {
+    transform: scale(1.05);
+}
+
+.unit-card .card-body {
+    padding: 1.25rem;
+}
+
+.info-item {
+    transition: all var(--transition-fast);
+    padding: 0.5rem;
+    border-radius: var(--border-radius-sm);
+}
+
+.info-item:hover {
+    background: var(--pink-primary) !important;
+}
+
+.info-item:hover i,
+.info-item:hover small {
+    color: white !important;
+}
+
+/* ==================== TESTIMONIAL CARDS (DEPOIMENTOS) ==================== */
+.testimonial-card {
+    transition: all var(--transition-base);
+    border: 1px solid var(--gray-200);
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    height: 100%;
+    padding: 1.5rem;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: transparent;
+}
+
+/* ==================== PRICE CARDS (PREÇOS) ==================== */
+.price-card {
+    transition: all var(--transition-base);
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem;
+    height: 100%;
+    text-align: center;
+}
+
+.price-card:hover {
+    transform: translateY(-10px);
+}
+
+.price-value {
+    font-weight: 800;
+    font-size: 2rem;
+}
+
+/* ==================== TIMELINE (LINHA DO TEMPO) ==================== */
+.timeline {
+    position: relative;
+    padding-left: 40px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--pink-primary);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.timeline-icon {
+    position: absolute;
+    left: -40px;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--pink-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+}
+
+.timeline-content {
+    background: var(--white);
+    padding: 15px 20px;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ==================== GALLERY (GALERIA) ==================== */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: var(--border-radius-md);
+}
+
+.gallery-item img {
+    transition: transform var(--transition-slow);
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    padding: 20px;
+    transition: bottom var(--transition-base);
+    text-align: center;
+}
+
+.gallery-item:hover .gallery-overlay {
+    bottom: 0;
+}
+
+/* ==================== FILTER BUTTONS (FILTROS) ==================== */
+.filter-btn {
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background: var(--pink-primary) !important;
+    color: white !important;
+    border-color: var(--pink-primary) !important;
+}
+
+/* ==================== RATING STARS (AVALIAÇÕES) ==================== */
+.rating {
+    display: inline-flex;
+    gap: 2px;
+}
+
+.rating i {
+    font-size: 0.9rem;
+    color: #ffc107;
+}
+
+/* ==================== WHATSAPP FLOAT BUTTON ==================== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-base);
+    z-index: 80;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    color: white;
+}
+
+/* ==================== CALENDAR CUSTOM (FLATPICKR) ==================== */
+.flatpickr-calendar {
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: none;
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.selected:hover {
+    background: var(--pink-primary);
+    border-color: var(--pink-primary);
+}
+
+.flatpickr-day.today {
+    border-color: var(--pink-primary);
+}
+
+/* ==================== PAGINATION (PAGINAÇÃO) ==================== */
+.pagination .page-link {
+    border-radius: var(--border-radius-pill);
+    margin: 0 3px;
+    color: var(--gray-700);
+    border: 1px solid var(--gray-300);
+}
+
+.pagination .page-link:hover {
+    background-color: var(--pink-extra-light);
+    color: var(--pink-primary);
+    border-color: var(--pink-light);
+}
+
+.pagination .page-item.active .page-link {
+    background: var(--pink-primary);
+    border-color: transparent;
+    color: white;
+}
+
+/* ==================== TOOLTIPS ==================== */
+.tooltip-inner {
+    background-color: var(--gray-800);
+    border-radius: var(--border-radius-sm);
+    padding: 8px 12px;
+}
+
+/* ==================== BADGES ==================== */
+.badge {
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-pill);
+}
+
+.badge-pink {
+    background-color: var(--pink-extra-light);
+    color: var(--pink-primary);
+}
+
+.badge-lilac {
+    background-color: var(--lilac-light);
+    color: var(--lilac-primary);
+}
+
+/* ==================== SKELETON LOADING ==================== */
+.skeleton {
+    background: linear-gradient(90deg, var(--gray-200), var(--gray-100), var(--gray-200));
+    background-size: 200% 100%;
+    animation: skeletonLoad 1.5s infinite;
+    border-radius: var(--border-radius-md);
+}
+
+@keyframes skeletonLoad {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* ==================== HORÁRIOS (TABELA) ==================== */
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.schedule-table th,
+.schedule-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.schedule-table th {
+    background: var(--pink-extra-light);
+    color: var(--gray-800);
+    font-weight: 600;
+}
+
+.schedule-table td {
+    color: var(--gray-600);
+}
+
+.schedule-table tr:hover td {
+    background: var(--pink-extra-light);
+}
+
+/* ==================== NAVBAR CORREÇÕES ==================== */
+.navbar {
+    min-height: 74px;
+    padding-top: 0.28rem !important;
+    padding-bottom: 0.28rem !important;
+    position: sticky;
+    top: 0;
+    z-index: 1040;
+    background-color: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(10px);
+}
+
+.navbar .container {
+    align-items: center;
+    min-height: 64px;
+}
+
+.brand-logo-img {
+    height: 74px !important;
+    width: auto !important;
+    max-width: 220px !important;
+    object-fit: contain !important;
+    display: block !important;
+}
+
+.navbar-brand {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.navbar-nav .nav-link {
+    font-size: 0.88rem;
+    padding: 0.45rem 0.65rem !important;
+    border-radius: 999px;
+    color: var(--gray-700);
+    font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    background: var(--pink-extra-light);
+    color: var(--pink-primary) !important;
+}
+
+/* ==================== HERO CARROSSEL ==================== */
+.hero-carousel-section {
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden;
+}
+
+.hero-carousel-section .carousel,
+.hero-carousel-section .carousel-inner,
+.hero-carousel-section .carousel-item {
+    margin: 0 !important;
+}
+
+.hero-carousel-section .hero-slide {
+    min-height: calc(100vh - 74px);
+    padding: 0 !important;
+}
+
+.hero-content h1,
+.hero-content h2,
+.hero-content .lead,
+.carousel-caption h1,
+.carousel-caption h2,
+.carousel-caption h3,
+.hero-slide h1,
+.hero-slide h2 {
+    color: #ffffff !important;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+    font-weight: 700;
+}
+
+.hero-content {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(3px);
+    padding: 2rem 3rem;
+    border-radius: 20px;
+}
+.hero-content p,
+.carousel-caption p,
+.hero-slide p {
+    color: #ffffff !important;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive hero-content padding */
+@media (max-width: 991.98px) {
+    .hero-content {
+        padding: 1.5rem;
+        margin: 0 1rem;
+        max-width: 100%;
+    }
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 991.98px) {
+    .brand-logo-img {
+        height: 60px !important;
+        max-width: 180px !important;
+    }
+    .navbar {
+        min-height: 66px !important;
+    }
+    .hero-carousel-section .hero-slide {
+        min-height: calc(100vh - 66px) !important;
+    }
+    .doctors-carousel-wrapper {
+        padding: 0 48px !important;
+    }
+    .doctor-card {
+        flex: 0 0 300px;
+        width: 300px;
+        min-width: 300px;
+    }
+    .faq-contact-card,
+    .faq-contact-box {
+        padding: 1.5rem;
+    }
+    .theme-switch {
+        width: 45px;
+        height: 45px;
+        bottom: 25px;
+        right: 25px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .brand-logo-img {
+        height: 52px !important;
+        max-width: 150px !important;
+    }
+    .doctors-carousel-wrapper {
+        padding: 0 38px !important;
+    }
+    .doctor-card {
+        flex: 0 0 calc(100vw - 88px);
+        width: calc(100vw - 88px);
+        min-width: calc(100vw - 88px);
+    }
+    .doctor-card .card {
+        min-height: auto;
+    }
+    .carousel-nav-btn {
+        width: 36px;
+        height: 36px;
+    }
+    .faq-contact-card,
+    .faq-contact-box {
+        padding: 1.25rem;
+    }
+    .faq-contact-card h4,
+    .faq-contact-box h4 {
+        font-size: 1.25rem;
+    }
+    .theme-switch {
+        width: 42px;
+        height: 42px;
+        bottom: 20px;
+        right: 20px;
+    }
+    .theme-switch i {
+        font-size: 1.25rem;
+    }
+}
+
+/* ==================== DARK MODE ==================== */
+[data-theme="dark"] body,
+[data-theme="dark"] main {
+    background: #0f172a !important;
+}
+
+[data-theme="dark"] .navbar {
+    background-color: #16213e !important;
+}
+
+[data-theme="dark"] .navbar-nav .nav-link {
+    color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .navbar-nav .nav-link:hover,
+[data-theme="dark"] .navbar-nav .nav-link.active {
+    background: rgba(238, 130, 170, 0.16);
+    color: #ff85b3 !important;
+}
+
+/* Theme switch no dark mode */
+[data-theme="dark"] .theme-switch {
+    background: #16213e;
+    border: 1px solid #2b3857;
+}
+
+[data-theme="dark"] .theme-switch i {
+    color: #ff85b3;
+}
+
+/* Accordion no dark mode */
+[data-theme="dark"] .accordion-button {
+    background: #2d1f2a !important;
+    color: #ffcce0 !important;
+}
+
+[data-theme="dark"] .accordion-button:not(.collapsed) {
+    background: #ee82aa !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .accordion-body {
+    background: #16213e;
+    color: #cbd5e1;
+    border-color: #2b3857;
+}
+
+[data-theme="dark"] .faq-categories .nav-link {
+    background: #2d1f2a;
+    color: #ffcce0;
+}
+
+[data-theme="dark"] .faq-categories .nav-link:hover,
+[data-theme="dark"] .faq-categories .nav-link.active {
+    background: #ee82aa;
+    color: #ffffff;
+}
+
+/* FAQ Contact Box no dark mode */
+[data-theme="dark"] .faq-contact-card,
+[data-theme="dark"] .faq-contact-box {
+    background: #d45a82 !important;
+}
+
+[data-theme="dark"] .faq-contact-card h4,
+[data-theme="dark"] .faq-contact-box h4,
+[data-theme="dark"] .faq-contact-card p,
+[data-theme="dark"] .faq-contact-box p,
+[data-theme="dark"] .faq-contact-card a,
+[data-theme="dark"] .faq-contact-box a,
+[data-theme="dark"] .faq-contact-card i,
+[data-theme="dark"] .faq-contact-box i {
+    color: #ffffff !important;
+}
+
+/* Cards no dark mode */
+[data-theme="dark"] .card,
+[data-theme="dark"] .service-card,
+[data-theme="dark"] .benefit-card,
+[data-theme="dark"] .testimonial-card,
+[data-theme="dark"] .insurance-card,
+[data-theme="dark"] .unit-card,
+[data-theme="dark"] .price-card,
+[data-theme="dark"] .doctor-card .card,
+[data-theme="dark"] .exam-card {
+    background-color: #16213e !important;
+    border-color: #2b3857 !important;
+}
+
+[data-theme="dark"] p,
+[data-theme="dark"] .lead,
+[data-theme="dark"] .card-text,
+[data-theme="dark"] .small,
+[data-theme="dark"] .text-muted,
+[data-theme="dark"] li,
+[data-theme="dark"] label {
+    color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6,
+[data-theme="dark"] .fw-bold,
+[data-theme="dark"] .fw-semibold {
+    color: #f8fbff !important;
+}
+
+/* Hero textos no dark mode */
+[data-theme="dark"] .hero-content h1,
+[data-theme="dark"] .hero-content h2,
+[data-theme="dark"] .hero-content .lead,
+[data-theme="dark"] .carousel-caption h1,
+[data-theme="dark"] .carousel-caption h2,
+[data-theme="dark"] .hero-slide h1,
+[data-theme="dark"] .hero-slide h2 {
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .hero-content p,
+[data-theme="dark"] .carousel-caption p {
+    color: #ffffff !important;
+}
+
+/* Botões no dark mode */
+[data-theme="dark"] .btn-outline-pink {
+    border-color: #ff85b3;
+    color: #ff85b3;
+}
+
+[data-theme="dark"] .btn-outline-pink:hover {
+    background: #ff85b3;
+    color: #16213e;
+}
+
+[data-theme="dark"] .btn-pink {
+    background: #ff85b3;
+    color: #16213e;
+}
+
+[data-theme="dark"] .doctor-card .btn-agendar {
+    background: #ff85b3;
+    color: #16213e;
+}
+
+[data-theme="dark"] .doctor-card .btn-agendar:hover {
+    background: #ff9dc2;
+}
+
+[data-theme="dark"] .schedule-table th,
+[data-theme="dark"] .table th {
+    background: #1e2a4a;
+    color: #f8fbff;
+}
+
+[data-theme="dark"] .schedule-table td,
+[data-theme="dark"] .table td {
+    color: #cbd5e1;
+    border-color: #2b3857;
+}
+
+/* ==================== PERFIL DO MÉDICO - ORGANIZAÇÃO ==================== */
+
+/* === CARDS "SOBRE" EM GRID === */
+#sobre .sobre-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.25rem !important;
+}
+
+#sobre .sobre-card {
+    background: var(--card-bg, var(--white));
+    border-radius: 12px;
+    border: 1px solid var(--border-color, var(--gray-200));
+    overflow: hidden;
+}
+
+#sobre .sobre-card .sobre-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.25rem 0.5rem;
+}
+
+#sobre .sobre-card .sobre-card-icon {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: var(--pink-primary);
+    background: var(--pink-extra-light);
+}
+
+#sobre .sobre-card .sobre-section-title {
+    font-size: 0.8rem !important;
+    font-weight: 700 !important;
+    color: var(--text-muted, var(--gray-500)) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+#sobre .sobre-card .sobre-card-body {
+    padding: 0.75rem 1.25rem 1.25rem;
+}
+
+/* === ÁREAS DE ATUAÇÃO === */
+.areas-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.area-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--pink-extra-light);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    border: 1px solid rgba(238,130,170,0.1);
+    transition: all 0.2s ease;
+}
+
+.area-item:hover {
+    background: var(--pink-primary);
+}
+
+.area-item:hover .area-text {
+    color: white;
+}
+
+.area-item .area-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--pink-primary);
+    flex-shrink: 0;
+}
+
+.area-item:hover .area-dot {
+    background: white;
+}
+
+.area-item .area-text {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--gray-700);
+}
+
+/* === IDIOMAS === */
+.idiomas-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.idioma-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--lilac-extra-light);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    border: 1px solid rgba(200,162,200,0.15);
+    transition: all 0.2s ease;
+}
+
+.idioma-item:hover {
+    border-color: var(--lilac-primary);
+}
+
+.idioma-item .idioma-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--lilac-primary);
+    flex-shrink: 0;
+}
+
+.idioma-item .idioma-text {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--gray-700);
+    transition: color 0.2s ease;
+}
+
+/* === EXPERIÊNCIA (stats) === */
+.experiencia-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.experiencia-stat {
+    text-align: center;
+    padding: 0.75rem;
+    background: var(--pink-extra-light);
+    border-radius: 12px;
+    border: 1px solid rgba(238,130,170,0.08);
+    transition: all 0.3s ease;
+}
+
+.experiencia-stat:hover {
+    border-color: var(--pink-light);
+}
+
+.experiencia-stat-value {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--pink-primary-dark);
+    line-height: 1.2;
+}
+
+.experiencia-stat-label {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+    font-weight: 500;
+}
+
+.experiencia-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.experiencia-detail {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    background: var(--bg-muted, var(--gray-100));
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.experiencia-detail:hover {
+    background: var(--pink-extra-light);
+    color: var(--pink-primary-dark);
+}
+
+.experiencia-detail i {
+    color: var(--pink-primary);
+}
+
+/* === REGISTROS PROFISSIONAIS === */
+.registros-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.registro-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-muted, var(--gray-100));
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.registro-item:hover {
+    background: var(--pink-extra-light);
+}
+
+.registro-item .registro-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--pink-extra-light), var(--lilac-extra-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pink-primary);
+    font-size: 0.95rem;
+    flex-shrink: 0;
+}
+
+.registro-item .registro-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.registro-item .registro-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gray-500);
+}
+
+.registro-item .registro-value {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-color, var(--gray-800));
+}
+
+/* === PRÊMIOS === */
+#sobre .sobre-premios-text {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--gray-600);
+}
+
+/* === ESPECIALIDADES BADGES === */
+.especialidades-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+/* === DARK MODE === */
+[data-theme="dark"] .area-item,
+[data-theme="dark"] .idioma-item {
+    background: rgba(238,130,170,0.1);
+    border-color: rgba(238,130,170,0.15);
+}
+
+[data-theme="dark"] .area-item .area-text,
+[data-theme="dark"] .idioma-item .idioma-text {
+    color: var(--gray-300);
+}
+
+[data-theme="dark"] .experiencia-stat {
+    background: rgba(238,130,170,0.08);
+    border-color: rgba(238,130,170,0.1);
+}
+
+[data-theme="dark"] .experiencia-detail {
+    background: rgba(255,255,255,0.04);
+    color: var(--gray-400);
+}
+
+[data-theme="dark"] .registro-item {
+    background: rgba(255,255,255,0.04);
+}
+
+[data-theme="dark"] .registro-item .registro-value {
+    color: var(--gray-200);
+}
+
+[data-theme="dark"] .sobre-desc-box {
+    background: rgba(238,130,170,0.06) !important;
+    border-color: rgba(238,130,170,0.12) !important;
+}
+
+/* === RESPONSIVO === */
+@media (max-width: 991.98px) {
+    #sobre .sobre-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    #sobre .sobre-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    #sobre .sobre-card .sobre-card-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .experiencia-stats {
+        grid-template-columns: 1fr;
+    }
+}

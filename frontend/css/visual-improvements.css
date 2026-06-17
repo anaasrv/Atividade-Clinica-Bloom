@@ -1,0 +1,1468 @@
+/*
+================================================================================
+ARQUIVO: visual-improvements.css
+PROJETO: Bloom Maternity - Clínica de Obstetrícia
+DESCRIÇÃO: Melhorias visuais, dark mode aprimorado, imagens e qualidade geral.
+VERSÃO: 2.0.0
+================================================================================
+*/
+
+/* ==================== DARK MODE - PALETA MODERNA E ELEGANTE ==================== */
+[data-theme="dark"] {
+    --surface-primary: #111827;
+    --surface-secondary: #1a2236;
+    --surface-tertiary: #222f47;
+    --surface-card: #1e2d45;
+    --surface-elevated: #263352;
+
+    --text-primary: #f0f5ff;
+    --text-secondary: #c8d6ef;
+    --text-muted: #8fa3c0;
+    --text-inverse: #111827;
+
+    --brand-primary: #f28cb8;
+    --brand-secondary: #d4b0e0;
+    --brand-glow: rgba(242, 140, 184, 0.25);
+
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-medium: rgba(255, 255, 255, 0.14);
+    color-scheme: dark;
+}
+
+[data-theme="dark"] body {
+    background-color: #111827 !important;
+    color: #c8d6ef;
+}
+
+[data-theme="dark"] main {
+    background-color: #111827 !important;
+}
+
+/* ==================== DARK MODE - SEÇÕES ALTERNADAS ==================== */
+[data-theme="dark"] .bg-light,
+[data-theme="dark"] .bg-light-gradient,
+[data-theme="dark"] .bg-light-pink,
+[data-theme="dark"] .bg-extra-light,
+[data-theme="dark"] .pink-bg,
+[data-theme="dark"] .lilac-bg,
+[data-theme="dark"] .bg-light-lilac {
+    background-color: #1a2236 !important;
+}
+
+[data-theme="dark"] .bg-white {
+    background-color: #1e2d45 !important;
+}
+
+/* ==================== DARK MODE - NAVBAR ==================== */
+[data-theme="dark"] .navbar {
+    background-color: rgba(17, 24, 39, 0.97) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    backdrop-filter: blur(16px);
+}
+
+[data-theme="dark"] .navbar-nav .nav-link {
+    color: #c8d6ef !important;
+}
+
+[data-theme="dark"] .navbar-nav .nav-link:hover {
+    background: rgba(242, 140, 184, 0.15) !important;
+    color: #f28cb8 !important;
+}
+
+[data-theme="dark"] .navbar-nav .nav-link.active {
+    background: rgba(242, 140, 184, 0.18) !important;
+    color: #f28cb8 !important;
+}
+
+/* ==================== DARK MODE - CARDS ==================== */
+[data-theme="dark"] .card,
+[data-theme="dark"] .service-card,
+[data-theme="dark"] .benefit-card,
+[data-theme="dark"] .testimonial-card,
+[data-theme="dark"] .insurance-card,
+[data-theme="dark"] .unit-card,
+[data-theme="dark"] .price-card,
+[data-theme="dark"] .transport-card,
+[data-theme="dark"] .exam-card,
+[data-theme="dark"] .step-card,
+[data-theme="dark"] .specialty-card,
+[data-theme="dark"] .feature-card {
+    background-color: #1e2d45 !important;
+    border-color: rgba(255,255,255,0.1) !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.35) !important;
+}
+
+[data-theme="dark"] .card {
+    color: #c8d6ef;
+}
+
+[data-theme="dark"] .card:hover,
+[data-theme="dark"] .service-card:hover,
+[data-theme="dark"] .exam-card:hover {
+    background-color: #253554 !important;
+    border-color: rgba(242, 140, 184, 0.25) !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.45) !important;
+}
+
+/* ==================== DARK MODE - TEXTOS ==================== */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6,
+[data-theme="dark"] .fw-bold,
+[data-theme="dark"] .fw-semibold,
+[data-theme="dark"] .card-title,
+[data-theme="dark"] .service-card h4,
+[data-theme="dark"] .benefit-card h4,
+[data-theme="dark"] .exam-card h3,
+[data-theme="dark"] .exam-card h4,
+[data-theme="dark"] .insurance-card h4,
+[data-theme="dark"] .unit-card h4,
+[data-theme="dark"] .price-card h3 {
+    color: #f0f5ff !important;
+}
+
+[data-theme="dark"] p,
+[data-theme="dark"] .lead,
+[data-theme="dark"] .card-text,
+[data-theme="dark"] .accordion-body,
+[data-theme="dark"] .service-card p,
+[data-theme="dark"] .benefit-card p,
+[data-theme="dark"] .exam-card p {
+    color: #c8d6ef !important;
+}
+
+[data-theme="dark"] .text-muted,
+[data-theme="dark"] small,
+[data-theme="dark"] .small {
+    color: #8fa3c0 !important;
+}
+
+[data-theme="dark"] label,
+[data-theme="dark"] .form-label {
+    color: #c8d6ef !important;
+}
+
+[data-theme="dark"] li {
+    color: #c8d6ef;
+}
+
+/* ==================== DARK MODE - HERO / CARROSSEL ==================== */
+[data-theme="dark"] .hero-slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(17,24,39,0.65) 0%, rgba(30,45,69,0.55) 100%);
+    z-index: 0;
+}
+
+[data-theme="dark"] .hero-content,
+[data-theme="dark"] .carousel-caption {
+    position: relative;
+    z-index: 1;
+}
+
+[data-theme="dark"] .hero-content h1,
+[data-theme="dark"] .hero-content h2,
+[data-theme="dark"] .carousel-caption h1,
+[data-theme="dark"] .carousel-caption h2,
+[data-theme="dark"] .hero-slide h1,
+[data-theme="dark"] .hero-slide h2 {
+    color: #ffffff !important;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.4);
+}
+
+[data-theme="dark"] .hero-content p,
+[data-theme="dark"] .hero-content .lead,
+[data-theme="dark"] .carousel-caption p,
+[data-theme="dark"] .hero-slide p {
+    color: rgba(255,255,255,0.92) !important;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+}
+
+/* ==================== DARK MODE - FORMULÁRIOS ==================== */
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select {
+    background-color: #1a2236 !important;
+    border: 1.5px solid rgba(255,255,255,0.15) !important;
+    color: #f0f5ff !important;
+}
+
+[data-theme="dark"] .form-control:focus,
+[data-theme="dark"] .form-select:focus {
+    background-color: #1e2d45 !important;
+    border-color: #f28cb8 !important;
+    box-shadow: 0 0 0 3px rgba(242, 140, 184, 0.2) !important;
+    color: #f0f5ff !important;
+}
+
+[data-theme="dark"] .form-control::placeholder {
+    color: #5d7494 !important;
+}
+
+[data-theme="dark"] .form-check-label {
+    color: #c8d6ef !important;
+}
+
+[data-theme="dark"] .form-check-input {
+    background-color: #1a2236;
+    border-color: rgba(255,255,255,0.2);
+}
+
+[data-theme="dark"] .form-check-input:checked {
+    background-color: #f28cb8;
+    border-color: #f28cb8;
+}
+
+/* ==================== DARK MODE - BOTÕES ==================== */
+[data-theme="dark"] .btn-pink,
+[data-theme="dark"] .btn-gradient {
+    background: linear-gradient(135deg, #f28cb8, #d4b0e0) !important;
+    color: #111827 !important;
+    border: none !important;
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(242, 140, 184, 0.35) !important;
+}
+
+[data-theme="dark"] .btn-pink:hover,
+[data-theme="dark"] .btn-gradient:hover {
+    background: linear-gradient(135deg, #ff9dc6, #dbbce8) !important;
+    color: #111827 !important;
+    box-shadow: 0 6px 22px rgba(242, 140, 184, 0.5) !important;
+    transform: translateY(-2px);
+}
+
+[data-theme="dark"] .btn-outline-pink {
+    border: 2px solid #f28cb8 !important;
+    color: #f28cb8 !important;
+    background: transparent !important;
+}
+
+[data-theme="dark"] .btn-outline-pink:hover {
+    background: rgba(242, 140, 184, 0.15) !important;
+    color: #f28cb8 !important;
+}
+
+[data-theme="dark"] .btn-light {
+    background-color: #f0f5ff !important;
+    color: #111827 !important;
+    border: none !important;
+}
+
+[data-theme="dark"] .btn-light:hover {
+    background-color: #ffffff !important;
+}
+
+[data-theme="dark"] .btn-outline-light {
+    border: 2px solid rgba(255,255,255,0.8) !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .btn-outline-light:hover {
+    background-color: rgba(255,255,255,0.15) !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .doctor-card .btn-agendar {
+    background: linear-gradient(135deg, #f28cb8, #d4b0e0) !important;
+    color: #111827 !important;
+}
+
+/* ==================== DARK MODE - ACCORDION ==================== */
+[data-theme="dark"] .accordion-item {
+    background-color: #1e2d45 !important;
+    border-color: rgba(255,255,255,0.1) !important;
+}
+
+[data-theme="dark"] .accordion-button {
+    background-color: #1e2d45 !important;
+    color: #f0f5ff !important;
+    border-bottom: 1px solid rgba(255,255,255,0.07) !important;
+}
+
+[data-theme="dark"] .accordion-button:not(.collapsed) {
+    background: linear-gradient(135deg, #f28cb8, #d4b0e0) !important;
+    color: #111827 !important;
+    box-shadow: none !important;
+}
+
+[data-theme="dark"] .accordion-button::after {
+    filter: invert(0.7) sepia(1) saturate(0.5) hue-rotate(180deg);
+}
+
+[data-theme="dark"] .accordion-button:not(.collapsed)::after {
+    filter: brightness(0);
+}
+
+[data-theme="dark"] .accordion-body {
+    background-color: #172133 !important;
+    color: #c8d6ef !important;
+    border-top: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+/* ==================== DARK MODE - TABELAS ==================== */
+[data-theme="dark"] .table {
+    color: #c8d6ef !important;
+    border-color: rgba(255,255,255,0.1) !important;
+}
+
+[data-theme="dark"] .table > :not(caption) > * > * {
+    background-color: transparent;
+    border-bottom-color: rgba(255,255,255,0.08);
+    color: #c8d6ef;
+}
+
+[data-theme="dark"] .table thead th,
+[data-theme="dark"] .table th {
+    background-color: #253554 !important;
+    color: #f0f5ff !important;
+    border-color: rgba(255,255,255,0.12) !important;
+    font-weight: 700;
+}
+
+[data-theme="dark"] .table tbody tr {
+    background-color: #1e2d45 !important;
+}
+
+[data-theme="dark"] .table tbody tr:nth-of-type(even) {
+    background-color: #1a2236 !important;
+}
+
+[data-theme="dark"] .table tbody tr:hover td {
+    background-color: rgba(242, 140, 184, 0.08) !important;
+    color: #f0f5ff !important;
+}
+
+[data-theme="dark"] .table td {
+    border-color: rgba(255,255,255,0.08) !important;
+    color: #c8d6ef !important;
+}
+
+/* ==================== DARK MODE - DROPDOWN ==================== */
+[data-theme="dark"] .dropdown-menu {
+    background-color: #1e2d45 !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.5) !important;
+}
+
+[data-theme="dark"] .dropdown-item {
+    color: #c8d6ef !important;
+}
+
+[data-theme="dark"] .dropdown-item:hover,
+[data-theme="dark"] .dropdown-item:focus {
+    background-color: rgba(242, 140, 184, 0.12) !important;
+    color: #f28cb8 !important;
+}
+
+[data-theme="dark"] .dropdown-divider {
+    border-color: rgba(255,255,255,0.1) !important;
+}
+
+/* ==================== DARK MODE - MODAL ==================== */
+[data-theme="dark"] .modal-content {
+    background-color: #1e2d45 !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.6) !important;
+}
+
+[data-theme="dark"] .modal-header {
+    border-bottom-color: rgba(255,255,255,0.1) !important;
+    background-color: #253554 !important;
+}
+
+[data-theme="dark"] .modal-footer {
+    border-top-color: rgba(255,255,255,0.1) !important;
+    background-color: #172133 !important;
+}
+
+[data-theme="dark"] .modal-title {
+    color: #f0f5ff !important;
+}
+
+[data-theme="dark"] .modal-header .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* ==================== DARK MODE - SEÇÕES COM FUNDO GRADIENTE ==================== */
+[data-theme="dark"] .bg-gradient-pink,
+[data-theme="dark"] .cta-section {
+    background: linear-gradient(135deg, #8c2a50 0%, #5c2a7a 100%) !important;
+}
+
+[data-theme="dark"] .cta-section h2,
+[data-theme="dark"] .cta-section p {
+    color: #ffffff !important;
+}
+
+/* ==================== DARK MODE - BADGES ==================== */
+[data-theme="dark"] .badge.bg-light-pink,
+[data-theme="dark"] .badge.bg-gradient-pink {
+    background: rgba(242, 140, 184, 0.2) !important;
+    color: #f28cb8 !important;
+    border: 1px solid rgba(242, 140, 184, 0.3) !important;
+}
+
+/* ==================== DARK MODE - ÍCONES E SERVIÇOS ==================== */
+[data-theme="dark"] .service-icon,
+[data-theme="dark"] .benefit-icon,
+[data-theme="dark"] .exam-icon,
+[data-theme="dark"] .feature-card i {
+    background: rgba(242, 140, 184, 0.15) !important;
+    color: #f28cb8 !important;
+}
+
+[data-theme="dark"] .service-icon i,
+[data-theme="dark"] .benefit-icon i,
+[data-theme="dark"] .exam-icon i {
+    color: #f28cb8 !important;
+}
+
+[data-theme="dark"] .text-pink {
+    color: #f28cb8 !important;
+}
+
+/* ==================== DARK MODE - FILTROS ==================== */
+[data-theme="dark"] .filter-btn.btn-outline-pink:not(.active) {
+    background: #1e2d45 !important;
+    color: #f28cb8 !important;
+    border-color: rgba(242, 140, 184, 0.4) !important;
+}
+
+[data-theme="dark"] .filter-btn.active,
+[data-theme="dark"] .filters-section .filter-btn.active {
+    background: linear-gradient(135deg, #f28cb8, #d4b0e0) !important;
+    color: #111827 !important;
+    border-color: transparent !important;
+}
+
+[data-theme="dark"] .filters-section {
+    background: #1a2236 !important;
+}
+
+/* ==================== DARK MODE - FOOTER ==================== */
+[data-theme="dark"] .footer {
+    background: linear-gradient(180deg, #0d1525 0%, #0a1120 100%) !important;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+[data-theme="dark"] .footer h5,
+[data-theme="dark"] .footer h6 {
+    color: #f0f5ff !important;
+}
+
+[data-theme="dark"] .footer p,
+[data-theme="dark"] .footer span,
+[data-theme="dark"] .footer li,
+[data-theme="dark"] .footer a {
+    color: #8fa3c0 !important;
+}
+
+[data-theme="dark"] .footer a:hover {
+    color: #f28cb8 !important;
+}
+
+[data-theme="dark"] .footer .form-control,
+[data-theme="dark"] .footer input.form-control {
+    background-color: #1e2d45 !important;
+    color: #f0f5ff !important;
+    border-color: rgba(255,255,255,0.15) !important;
+}
+
+/* ==================== DARK MODE - PAGINAÇÃO ==================== */
+[data-theme="dark"] .pagination .page-link {
+    background-color: #1e2d45 !important;
+    border-color: rgba(255,255,255,0.12) !important;
+    color: #c8d6ef !important;
+}
+
+[data-theme="dark"] .pagination .page-link:hover {
+    background-color: rgba(242, 140, 184, 0.12) !important;
+    color: #f28cb8 !important;
+}
+
+[data-theme="dark"] .pagination .page-item.active .page-link {
+    background-color: #f28cb8 !important;
+    border-color: #f28cb8 !important;
+    color: #111827 !important;
+}
+
+/* ==================== DARK MODE - PROGRESSO / STEPS ==================== */
+[data-theme="dark"] .progress-steps::before {
+    background: rgba(255,255,255,0.1);
+}
+
+[data-theme="dark"] .step-circle {
+    background: #1e2d45;
+    border-color: rgba(255,255,255,0.2);
+    color: #c8d6ef;
+}
+
+[data-theme="dark"] .step.active .step-circle {
+    background: #f28cb8;
+    border-color: #f28cb8;
+    color: #111827;
+    box-shadow: 0 0 0 4px rgba(242, 140, 184, 0.25);
+}
+
+[data-theme="dark"] .step-label {
+    color: #8fa3c0;
+}
+
+[data-theme="dark"] .step.active .step-label {
+    color: #f28cb8;
+}
+
+/* ==================== DARK MODE - TIMELINE ==================== */
+[data-theme="dark"] .timeline::before {
+    background: rgba(242, 140, 184, 0.4);
+}
+
+[data-theme="dark"] .timeline-content {
+    background: #1e2d45;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+[data-theme="dark"] .timeline-icon {
+    background: linear-gradient(135deg, #f28cb8, #d4b0e0);
+    color: #111827;
+}
+
+/* ==================== DARK MODE - HERO SECTIONS INTERNAS ==================== */
+[data-theme="dark"] .page-hero,
+[data-theme="dark"] .inner-hero {
+    background: linear-gradient(135deg, #1a2236 0%, #111827 100%) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+[data-theme="dark"] .page-hero h1,
+[data-theme="dark"] .page-hero p,
+[data-theme="dark"] .inner-hero h1,
+[data-theme="dark"] .inner-hero p {
+    color: #f0f5ff !important;
+}
+
+/* ==================== DARK MODE - AGENDAMENTO ==================== */
+[data-theme="dark"] .booking-section,
+[data-theme="dark"] .schedule-section,
+[data-theme="dark"] .appointment-form {
+    background-color: #1e2d45 !important;
+}
+
+[data-theme="dark"] .time-slot {
+    background: #1e2d45 !important;
+    border-color: rgba(255,255,255,0.15) !important;
+    color: #c8d6ef !important;
+}
+
+[data-theme="dark"] .time-slot:hover,
+[data-theme="dark"] .time-slot.selected {
+    background: rgba(242, 140, 184, 0.2) !important;
+    border-color: #f28cb8 !important;
+    color: #f28cb8 !important;
+}
+
+[data-theme="dark"] .calendar-day {
+    background: #1e2d45 !important;
+    border-color: rgba(255,255,255,0.1) !important;
+    color: #c8d6ef !important;
+}
+
+[data-theme="dark"] .calendar-day:hover,
+[data-theme="dark"] .calendar-day.selected,
+[data-theme="dark"] .calendar-day.active {
+    background: rgba(242, 140, 184, 0.2) !important;
+    border-color: #f28cb8 !important;
+    color: #f28cb8 !important;
+}
+
+[data-theme="dark"] .calendar-header {
+    background: #253554 !important;
+    color: #f0f5ff !important;
+}
+
+/* ==================== DARK MODE - PLANOS ==================== */
+[data-theme="dark"] .price-card {
+    border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+[data-theme="dark"] .price-card.featured,
+[data-theme="dark"] .price-card.highlighted {
+    border-color: rgba(242, 140, 184, 0.4) !important;
+    background: linear-gradient(180deg, #253554 0%, #1e2d45 100%) !important;
+}
+
+[data-theme="dark"] .price-card.bg-pink {
+    background: linear-gradient(135deg, #8c2a50 0%, #7a2070 100%) !important;
+}
+
+[data-theme="dark"] .price-card.bg-pink h3,
+[data-theme="dark"] .price-card.bg-pink p,
+[data-theme="dark"] .price-card.bg-pink li,
+[data-theme="dark"] .price-card.bg-pink .price-value {
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .price-value {
+    color: #f28cb8 !important;
+}
+
+/* ==================== DARK MODE - ADMIN ==================== */
+[data-theme="dark"] .admin-sidebar {
+    background: linear-gradient(180deg, #0d1525 0%, #111827 100%) !important;
+    border-right: 1px solid rgba(255,255,255,0.07) !important;
+}
+
+[data-theme="dark"] .admin-main {
+    background-color: #111827 !important;
+}
+
+[data-theme="dark"] .stat-card {
+    background: #1e2d45 !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+/* ==================== DARK MODE - UNIDADES ==================== */
+[data-theme="dark"] .unit-card {
+    background: #1e2d45 !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+[data-theme="dark"] .unit-card:hover {
+    border-color: rgba(242, 140, 184, 0.3) !important;
+}
+
+/* ==================== DARK MODE - DEPOIMENTOS ==================== */
+[data-theme="dark"] .testimonial-card {
+    background: #1e2d45 !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+[data-theme="dark"] .testimonial-card .quote-icon {
+    color: rgba(242, 140, 184, 0.3) !important;
+}
+
+/* ==================== DARK MODE - SCROLLBAR ==================== */
+[data-theme="dark"] ::-webkit-scrollbar {
+    width: 8px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+    background: #0d1525;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: rgba(242, 140, 184, 0.4);
+    border-radius: 4px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background: rgba(242, 140, 184, 0.7);
+}
+
+/* ==================== DARK MODE - FAQ ==================== */
+[data-theme="dark"] .faq-categories .nav-link {
+    background: #1e2d45 !important;
+    color: #c8d6ef !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+[data-theme="dark"] .faq-categories .nav-link:hover {
+    background: rgba(242, 140, 184, 0.15) !important;
+    color: #f28cb8 !important;
+}
+
+[data-theme="dark"] .faq-categories .nav-link.active {
+    background: linear-gradient(135deg, #f28cb8, #d4b0e0) !important;
+    color: #111827 !important;
+    border-color: transparent !important;
+}
+
+[data-theme="dark"] .faq-contact-card,
+[data-theme="dark"] .faq-contact-box {
+    background: linear-gradient(135deg, #8c2a50 0%, #5c2a7a 100%) !important;
+}
+
+[data-theme="dark"] .faq-contact-card *,
+[data-theme="dark"] .faq-contact-box * {
+    color: #ffffff !important;
+}
+
+/* ==================== DARK MODE - NAV TABS ==================== */
+[data-theme="dark"] .nav-tabs {
+    border-bottom-color: rgba(255,255,255,0.1) !important;
+}
+
+[data-theme="dark"] .nav-tabs .nav-link {
+    color: #8fa3c0 !important;
+    border-color: transparent !important;
+}
+
+[data-theme="dark"] .nav-tabs .nav-link:hover {
+    color: #f28cb8 !important;
+    border-color: rgba(242, 140, 184, 0.3) !important;
+    background: transparent !important;
+}
+
+[data-theme="dark"] .nav-tabs .nav-link.active {
+    background-color: #1e2d45 !important;
+    border-color: rgba(255,255,255,0.1) rgba(255,255,255,0.1) #1e2d45 !important;
+    color: #f28cb8 !important;
+}
+
+/* ==================== DARK MODE - ALERTAS ==================== */
+[data-theme="dark"] .alert {
+    border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+[data-theme="dark"] .alert-info {
+    background-color: rgba(23, 162, 184, 0.15) !important;
+    color: #7dd8e8 !important;
+    border-color: rgba(23, 162, 184, 0.3) !important;
+}
+
+[data-theme="dark"] .alert-success {
+    background-color: rgba(40, 167, 69, 0.15) !important;
+    color: #7ee09a !important;
+    border-color: rgba(40, 167, 69, 0.3) !important;
+}
+
+[data-theme="dark"] .alert-warning {
+    background-color: rgba(255, 193, 7, 0.15) !important;
+    color: #ffd966 !important;
+    border-color: rgba(255, 193, 7, 0.3) !important;
+}
+
+[data-theme="dark"] .alert-danger {
+    background-color: rgba(220, 53, 69, 0.15) !important;
+    color: #f08090 !important;
+    border-color: rgba(220, 53, 69, 0.3) !important;
+}
+
+/* ==================== DARK MODE - LISTAS ==================== */
+[data-theme="dark"] .list-group-item {
+    background-color: #1e2d45 !important;
+    border-color: rgba(255,255,255,0.08) !important;
+    color: #c8d6ef !important;
+}
+
+[data-theme="dark"] .list-group-item:hover {
+    background-color: #253554 !important;
+    color: #f0f5ff !important;
+}
+
+[data-theme="dark"] .list-group-item.active {
+    background-color: #f28cb8 !important;
+    border-color: #f28cb8 !important;
+    color: #111827 !important;
+}
+
+/* ==================== DARK MODE - SEPARADORES ==================== */
+[data-theme="dark"] hr,
+[data-theme="dark"] .dropdown-divider {
+    border-color: rgba(255,255,255,0.08) !important;
+    opacity: 1 !important;
+}
+
+/* ==================== MELHORIAS VISUAIS GERAIS (LIGHT + DARK) ==================== */
+
+/* Hero slides - melhorar qualidade visual */
+.hero-slide {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.hero-slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,192,203,0.82) 0%, rgba(216,191,216,0.75) 100%);
+    z-index: 0;
+}
+
+.hero-slide .container {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    text-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+/* About section - imagem grid aprimorada */
+.about-image-grid img {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.about-image-grid img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.18) !important;
+}
+
+/* Service cards - melhorar ícone */
+.service-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #fff4f8 0%, #f5eef5 100%);
+    transition: all 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+    background: linear-gradient(135deg, #ee82aa, #cdb2d6);
+    transform: rotate(-5deg) scale(1.1);
+}
+
+.service-card:hover .service-icon i {
+    color: white !important;
+}
+
+/* Exam cards - melhorar ícone */
+.exam-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #fff4f8 0%, #f5eef5 100%);
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+.exam-card:hover .exam-icon {
+    background: linear-gradient(135deg, #ee82aa, #cdb2d6);
+    transform: scale(1.1);
+}
+
+.exam-card:hover .exam-icon i {
+    color: white !important;
+}
+
+/* Telemedicine section - melhorar imagem */
+.telemedicine-image {
+    position: relative;
+}
+
+.telemedicine-image::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, rgba(238,130,170,0.15), rgba(205,178,214,0.15));
+    z-index: 0;
+}
+
+.telemedicine-image img {
+    position: relative;
+    z-index: 1;
+}
+
+/* CTA section - melhorar visual */
+.cta-section {
+    background: linear-gradient(135deg, #ee82aa 0%, #cdb2d6 100%) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 60%;
+    height: 200%;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Insurance cards - melhorar visual */
+.insurance-card {
+    transition: all 0.3s ease;
+    border: 1.5px solid transparent;
+}
+
+.insurance-card:hover {
+    border-color: rgba(238,130,170,0.3) !important;
+    transform: translateY(-4px);
+}
+
+/* Feature cards na seção Sobre */
+.feature-card {
+    background: white;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    border: 1.5px solid rgba(238,130,170,0.1);
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(238,130,170,0.15) !important;
+    border-color: rgba(238,130,170,0.3);
+}
+
+/* Carousel doctor nav buttons */
+.carousel-nav-btn {
+    background: white !important;
+    border: 2px solid rgba(238,130,170,0.2) !important;
+    color: #ee82aa !important;
+    transition: all 0.3s ease !important;
+}
+
+.carousel-nav-btn:hover {
+    background: linear-gradient(135deg, #ee82aa, #cdb2d6) !important;
+    color: white !important;
+    border-color: transparent !important;
+}
+
+[data-theme="dark"] .carousel-nav-btn {
+    background: #1e2d45 !important;
+    border-color: rgba(242, 140, 184, 0.3) !important;
+    color: #f28cb8 !important;
+}
+
+[data-theme="dark"] .carousel-nav-btn:hover {
+    background: linear-gradient(135deg, #f28cb8, #d4b0e0) !important;
+    color: #111827 !important;
+}
+
+/* Text gradient  */
+.text-gradient {
+    background: linear-gradient(135deg, #ee82aa, #cdb2d6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Btn gradient */
+.btn-gradient {
+    background: linear-gradient(135deg, #ee82aa, #cdb2d6);
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(135deg, #d96d95, #b89ac0);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(238, 130, 170, 0.4);
+}
+
+/* ==================== SEÇÃO SOBRE - IMAGENS APRIMORADAS ==================== */
+.about-image-grid {
+    position: relative;
+}
+
+.about-image-grid > img:first-child {
+    border-radius: 20px;
+    object-fit: cover;
+    height: 300px;
+    width: 100%;
+}
+
+/* ==================== TELEMEDICINA PAGE - MELHORIAS ==================== */
+.telemedicine-steps .step-card {
+    border-radius: 16px;
+    border: 1.5px solid rgba(238,130,170,0.15);
+    transition: all 0.3s ease;
+}
+
+.telemedicine-steps .step-card:hover {
+    border-color: rgba(238,130,170,0.4);
+    transform: translateY(-4px);
+}
+
+/* ==================== MELHORIAS NA IMAGEM RANDÔMICA DO MÉDICO ==================== */
+/* médico-detalhe.html usa randomuser.me - deixar mais apresentável */
+.doctor-profile-img-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.doctor-profile-img-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ee82aa, #cdb2d6);
+    z-index: 0;
+    opacity: 0.3;
+}
+
+.doctor-profile-img-wrapper img {
+    position: relative;
+    z-index: 1;
+}
+
+/* ==================== DARK MODE - MÉDICO DETALHE ==================== */
+[data-theme="dark"] .doctor-profile {
+    background: #111827 !important;
+}
+
+[data-theme="dark"] .doctor-info-section {
+    background: #1e2d45 !important;
+}
+
+[data-theme="dark"] .doctor-profile-tabs .nav-tabs {
+    background: #1a2236 !important;
+}
+
+[data-theme="dark"] .availability-section {
+    background: #1a2236 !important;
+}
+
+/* ==================== DARK MODE - LOGIN E CADASTRO ==================== */
+[data-theme="dark"] .auth-card,
+[data-theme="dark"] .login-card,
+[data-theme="dark"] .register-card {
+    background: #1e2d45 !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4) !important;
+}
+
+[data-theme="dark"] .auth-section,
+[data-theme="dark"] .login-section {
+    background: linear-gradient(135deg, #111827 0%, #1a2236 100%) !important;
+}
+
+/* ==================== DARK MODE - NAVBAR TOGGLER ==================== */
+[data-theme="dark"] .navbar-toggler-icon {
+    filter: invert(1);
+}
+
+/* ==================== DARK MODE - SELECTOR TEXT ==================== */
+[data-theme="dark"] ::selection {
+    background: rgba(242, 140, 184, 0.4);
+    color: #f0f5ff;
+}
+
+/* ==================== SMOOTH TRANSITIONS ==================== */
+.hero-slide,
+.service-card,
+.exam-card,
+.insurance-card,
+.feature-card {
+    will-change: transform;
+}
+
+/* ==================== RESPONSIVIDADE - DARK MODE ==================== */
+@media (max-width: 768px) {
+    [data-theme="dark"] .hero-content h1 {
+        font-size: clamp(1.75rem, 6vw, 2.5rem) !important;
+    }
+    
+    [data-theme="dark"] .card,
+    [data-theme="dark"] .service-card,
+    [data-theme="dark"] .exam-card {
+        margin-bottom: 1rem;
+    }
+}
+
+
+/* ==================== DARK MODE - LOGIN / CADASTRO ==================== */
+[data-theme="dark"] .min-vh-100[style*="background"] {
+    background: linear-gradient(135deg, #111827 0%, #1a2236 100%) !important;
+}
+
+[data-theme="dark"] .login-page .form-label,
+[data-theme="dark"] .login-page .text-dark {
+    color: #e8edf5 !important;
+}
+
+[data-theme="dark"] .card-header.bg-gradient-pink {
+    background: linear-gradient(135deg, #8c2a50 0%, #5c2a7a 100%) !important;
+}
+
+[data-theme="dark"] .card-header.bg-gradient-pink h3,
+[data-theme="dark"] .card-header.bg-gradient-pink p {
+    color: #ffffff !important;
+}
+
+/* ==================== PAGE HERO BANNER - DARK MODE ==================== */
+[data-theme="dark"] .page-hero-banner {
+    background: linear-gradient(135deg, rgba(242,140,184,0.08) 0%, rgba(212,176,224,0.10) 100%) !important;
+    border-bottom-color: rgba(242,140,184,0.15) !important;
+}
+
+[data-theme="dark"] .page-hero-banner h1,
+[data-theme="dark"] .page-hero-banner .display-5 {
+    color: #f0f5ff !important;
+}
+
+[data-theme="dark"] .page-hero-banner .lead,
+[data-theme="dark"] .page-hero-banner .text-muted {
+    color: #8fa3c0 !important;
+}
+
+[data-theme="dark"] .page-hero-banner .breadcrumb-item.active {
+    color: #8fa3c0 !important;
+}
+
+[data-theme="dark"] .page-hero-banner .breadcrumb-item a {
+    color: #f28cb8 !important;
+}
+
+/* ==================== DARK MODE - PLANOS PAGE ==================== */
+[data-theme="dark"] .plan-badge {
+    background: rgba(242, 140, 184, 0.2) !important;
+    color: #f28cb8 !important;
+}
+
+[data-theme="dark"] .plan-check {
+    color: #f28cb8 !important;
+}
+
+[data-theme="dark"] .plan-x {
+    color: #f08090 !important;
+}
+
+/* ==================== DARK MODE - BOOKING STEPS ==================== */
+[data-theme="dark"] .booking-step,
+[data-theme="dark"] .step-indicator {
+    background: #1e2d45 !important;
+    border-color: rgba(255,255,255,0.1) !important;
+}
+
+[data-theme="dark"] .booking-step.active,
+[data-theme="dark"] .step-indicator.active {
+    background: rgba(242, 140, 184, 0.15) !important;
+    border-color: rgba(242, 140, 184, 0.4) !important;
+}
+
+[data-theme="dark"] .input-group .btn-outline-secondary {
+    background: #1a2236 !important;
+    border-color: rgba(255,255,255,0.15) !important;
+    color: #8fa3c0 !important;
+}
+
+[data-theme="dark"] .input-group .btn-outline-secondary:hover {
+    background: #253554 !important;
+    color: #f28cb8 !important;
+}
+
+/* ==================== DARK MODE - GALLERY ==================== */
+[data-theme="dark"] .gallery-item img {
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+}
+
+[data-theme="dark"] .gallery-item:hover img {
+    opacity: 1;
+}
+
+[data-theme="dark"] .gallery-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+}
+
+/* ==================== DARK MODE - SPECIALTY SECTION ==================== */
+[data-theme="dark"] .specialty-card,
+[data-theme="dark"] .specialty-item {
+    background: #1e2d45 !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+[data-theme="dark"] .specialty-card:hover,
+[data-theme="dark"] .specialty-item:hover {
+    border-color: rgba(242, 140, 184, 0.3) !important;
+    background: #253554 !important;
+}
+
+/* ==================== MELHORIAS VISUAIS - BREADCRUMBS ==================== */
+.breadcrumb {
+    font-size: 0.875rem;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: #cdb2d6;
+}
+
+/* ==================== MELHORIAS - SEÇÃO SOBRE IMAGEM ==================== */
+.about-section .about-image-grid {
+    position: relative;
+}
+
+.about-section .about-image-grid::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 60%;
+    height: 70%;
+    background: linear-gradient(135deg, rgba(238,130,170,0.12), rgba(205,178,214,0.12));
+    border-radius: 16px;
+    z-index: 0;
+}
+
+.about-section .about-image-grid img {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* ==================== DARK MODE - PAGE HEROES ==================== */
+[data-theme="dark"] .page-header,
+[data-theme="dark"] .telemed-hero-section {
+    background-blend-mode: multiply !important;
+}
+
+[data-theme="dark"] .page-header[style*="rgba(238,130,170"] {
+    background: linear-gradient(135deg, rgba(140,42,80,0.97) 0%, rgba(92,42,122,0.97) 100%) !important;
+}
+
+[data-theme="dark"] .page-header .stat-item h2,
+[data-theme="dark"] .page-header .stat-item p {
+    color: rgba(255,255,255,0.95) !important;
+}
+
+/* ==================== MELHORIAS VISUAIS - ABOUT SECTION ==================== */
+.about-section {
+    position: relative;
+}
+
+/* Feature card icon enhancement */
+.feature-card .bi {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.feature-card:hover .bi {
+    transform: scale(1.2) rotate(-5deg);
+    color: #d96d95 !important;
+}
+
+/* ==================== DARK MODE - FEATURE CARDS ==================== */
+[data-theme="dark"] .feature-card {
+    background: #1e2d45 !important;
+    border-color: rgba(255,255,255,0.08) !important;
+}
+
+[data-theme="dark"] .feature-card:hover {
+    border-color: rgba(242, 140, 184, 0.3) !important;
+    background: #253554 !important;
+}
+
+[data-theme="dark"] .feature-card h5 {
+    color: #f0f5ff !important;
+}
+
+[data-theme="dark"] .feature-card p {
+    color: #8fa3c0 !important;
+}
+
+/* ==================== HERO CAROUSEL INDICATORS - DARK ==================== */
+[data-theme="dark"] .carousel-indicators button {
+    background-color: rgba(242, 140, 184, 0.5);
+}
+
+[data-theme="dark"] .carousel-indicators button.active {
+    background-color: #f28cb8;
+}
+
+/* ==================== NAV PILLS DARK MODE ==================== */
+[data-theme="dark"] .nav-pills .nav-link {
+    color: #c8d6ef !important;
+    background: transparent;
+}
+
+[data-theme="dark"] .nav-pills .nav-link:hover {
+    background: rgba(242, 140, 184, 0.12) !important;
+    color: #f28cb8 !important;
+}
+
+[data-theme="dark"] .nav-pills .nav-link.active {
+    background: linear-gradient(135deg, #f28cb8, #d4b0e0) !important;
+    color: #111827 !important;
+}
+
+/* ==================== REVIEW / RATING DARK MODE ==================== */
+[data-theme="dark"] .review-item {
+    background: #1e2d45 !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+[data-theme="dark"] .rating span {
+    color: #8fa3c0 !important;
+}
+
+/* ==================== SOCIAL OVERLAY DARK ==================== */
+[data-theme="dark"] .doctor-social-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+[data-theme="dark"] .btn-social {
+    background: rgba(255,255,255,0.12);
+    color: #f28cb8;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+[data-theme="dark"] .btn-social:hover {
+    background: #f28cb8;
+    color: #111827;
+}
+
+
+/* ==================== FOOTER - MELHORIAS VISUAIS ==================== */
+.footer.bg-dark {
+    background: linear-gradient(180deg, #1a1f2e 0%, #0f1420 100%) !important;
+}
+
+.footer .text-white-50 {
+    color: rgba(255,255,255,0.6) !important;
+    transition: color 0.2s ease;
+}
+
+.footer .text-white-50:hover {
+    color: #f28cb8 !important;
+    opacity: 1;
+}
+
+.footer h5.text-pink {
+    color: #f28cb8 !important;
+}
+
+/* Footer dark mode: keep it as-is since it's already dark, just enhance */
+[data-theme="dark"] .footer.bg-dark {
+    background: linear-gradient(180deg, #0a0e1a 0%, #060a12 100%) !important;
+    border-top: 1px solid rgba(255,255,255,0.05) !important;
+}
+
+[data-theme="dark"] .footer .text-white-50,
+[data-theme="dark"] .footer .text-white-50 a {
+    color: rgba(200, 214, 239, 0.65) !important;
+}
+
+[data-theme="dark"] .footer .text-white-50:hover {
+    color: #f28cb8 !important;
+}
+
+[data-theme="dark"] .footer h5 {
+    color: #f28cb8 !important;
+}
+
+[data-theme="dark"] .footer h2 .text-lilac {
+    color: #d4b0e0 !important;
+}
+
+[data-theme="dark"] .footer .form-control {
+    background-color: rgba(255,255,255,0.08) !important;
+    border-color: rgba(255,255,255,0.15) !important;
+    color: #f0f5ff !important;
+}
+
+[data-theme="dark"] .footer .form-control::placeholder {
+    color: rgba(200, 214, 239, 0.5) !important;
+}
+
+[data-theme="dark"] .footer hr,
+[data-theme="dark"] .footer .bg-secondary {
+    border-color: rgba(255,255,255,0.06) !important;
+    opacity: 1 !important;
+}
+
+/* ==================== ADMIN - DARK MODE MELHORADO ==================== */
+[data-theme="dark"] table.table .badge.bg-success {
+    background-color: rgba(40,167,69,0.25) !important;
+    color: #7ee09a !important;
+    border: 1px solid rgba(40,167,69,0.3) !important;
+}
+
+[data-theme="dark"] table.table .badge.bg-warning {
+    background-color: rgba(255,193,7,0.2) !important;
+    color: #ffd966 !important;
+    border: 1px solid rgba(255,193,7,0.3) !important;
+}
+
+[data-theme="dark"] table.table .badge.bg-danger {
+    background-color: rgba(220,53,69,0.2) !important;
+    color: #f08090 !important;
+    border: 1px solid rgba(220,53,69,0.3) !important;
+}
+
+/* ==================== UNIT CARDS - IMAGENS ==================== */
+.unit-card img,
+.service-card img,
+.service-img-wrapper img {
+    transition: transform 0.4s ease;
+}
+
+.unit-card:hover img,
+.service-card:hover img {
+    transform: scale(1.04);
+}
+
+.service-img-wrapper {
+    overflow: hidden;
+}
+
+/* ==================== INSURANCE CARDS MELHORADAS ==================== */
+.insurance-logo {
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #fff4f8 0%, #f5eef5 100%) !important;
+}
+
+.insurance-card:hover .insurance-logo {
+    background: linear-gradient(135deg, #ee82aa, #cdb2d6) !important;
+    transform: scale(1.1);
+}
+
+.insurance-card:hover .insurance-logo i {
+    color: white !important;
+}
+
+/* ==================== HERO SECTION - GRADIENT OVERLAY REFINEMENT ==================== */
+/* Light mode hero slides */
+.hero-slide {
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+@media (max-width: 768px) {
+    .hero-slide {
+        background-attachment: scroll;
+        min-height: 70vh;
+    }
+}
+
+/* ==================== SECTION DIVIDERS ==================== */
+.section-divider {
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ee82aa 30%, #cdb2d6 70%, transparent);
+    border: none;
+    margin: 0;
+    opacity: 0.4;
+}
+
+[data-theme="dark"] .section-divider {
+    background: linear-gradient(90deg, transparent, rgba(242,140,184,0.5) 30%, rgba(212,176,224,0.5) 70%, transparent);
+}
+
+/* ==================== EMPTY SECTION PLACEHOLDERS (se existirem) ==================== */
+.empty-state,
+.no-results {
+    background: linear-gradient(135deg, rgba(238,130,170,0.06), rgba(205,178,214,0.06));
+    border: 2px dashed rgba(238,130,170,0.25);
+    border-radius: 16px;
+    padding: 3rem;
+    text-align: center;
+}
+
+[data-theme="dark"] .empty-state,
+[data-theme="dark"] .no-results {
+    background: rgba(242, 140, 184, 0.04);
+    border-color: rgba(242, 140, 184, 0.15);
+}
+

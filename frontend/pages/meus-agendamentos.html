@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minhas Consultas | Bloom Maternity</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../css/main.css"><link rel="stylesheet" href="../css/components.css"><link rel="stylesheet" href="../css/theme.css"><link rel="stylesheet" href="../css/responsive.css"><link rel="stylesheet" href="../css/visual-improvements.css"><link rel="stylesheet" href="../css/integrated-system.css">
+</head>
+<body class="integrated-page">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top"><div class="container"><a class="navbar-brand bloom-brand d-flex align-items-center gap-2" href="index.html"><img src="../assets/images/logo-bloom.png" class="brand-logo-img" alt="Bloom"></a><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button><div id="nav" class="collapse navbar-collapse"><ul class="navbar-nav mx-auto"><li class="nav-item"><a class="nav-link" href="index.html">Home</a></li><li class="nav-item"><a class="nav-link" href="agendamento.html">Agendar</a></li><li class="nav-item"><a class="nav-link active" href="meus-agendamentos.html">Minhas Consultas</a></li><li class="nav-item"><a class="nav-link" href="meu-perfil.html">Perfil</a></li></ul></div></div></nav>
+<main class="container py-5">
+  <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4"><div><span class="badge bg-light-pink text-pink rounded-pill px-3 py-2">Área do paciente</span><h1 class="fw-bold mt-2">Minhas Consultas</h1><p class="integrated-muted">Acompanhe seus agendamentos, cancele ou solicite reagendamento.</p></div><a class="btn btn-gradient rounded-pill" href="agendamento.html"><i class="bi bi-calendar-plus"></i> Nova consulta</a></div>
+  <div id="pageMessage"></div>
+  <div class="row g-4"><div class="col-lg-7"><div class="integrated-card p-4"><h4 class="fw-bold mb-3">Próximas consultas</h4><div id="consultasFuturas"></div></div></div><div class="col-lg-5"><div class="integrated-card p-4"><h4 class="fw-bold mb-3">Histórico</h4><div id="consultasHistorico"></div></div></div></div>
+</main>
+<div class="modal fade" id="reagendarModal" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><form class="modal-content rounded-4" id="reagendarForm"><div class="modal-header"><h5 class="modal-title fw-bold">Reagendar consulta</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body row g-3"><input type="hidden" id="reagendarId"><div class="col-md-6"><label class="form-label">Nova data</label><input id="novaData" type="date" class="form-control" required></div><div class="col-md-6"><label class="form-label">Novo horário</label><input id="novoHorario" type="time" class="form-control" required></div></div><div class="modal-footer"><button type="button" class="btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal">Fechar</button><button class="btn btn-gradient rounded-pill">Salvar</button></div></form></div></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script><script src="../js/main.js"></script><script src="../js/auth.js"></script><script src="../js/minhas-consultas.js"></script>
+</body></html>
